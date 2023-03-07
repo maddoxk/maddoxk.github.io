@@ -5,128 +5,135 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Maddox Krape</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<head>
+	<title>Maddox Krape</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
 
-				<!-- Header -->
-					<header id="header" class="alt">
-						<h1><a href="index.html">Maddox Krape</a></h1>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+<body class="is-preload">
 
-				<!-- Menu -->
-					<nav id="menu">
-						<div class="inner">
-							<h2>Menu</h2>
-							<ul class="links">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="about.html">About Me</a></li>
-								<li><a href="projects.html">Projects</a></li>
-							</ul>
-							<a href="#" class="close">Close</a>
-						</div>
-					</nav>
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
 
-				<!-- Banner -->
-					<section id="banner">
-						<div class="inner">
-							<div class="logo"><span class="icon fa-gem"></span></div>
-							<div class="typing-container">
-							<h2><span class="typed-text">&nbsp;</span><span class="cursor">&nbsp;</span></h2>
-							</div>
-							<p>Maddox Krape's Digital Portfolio</p>
-						</div>
-						<script>
-								const typedTextSpan = document.querySelector(".typed-text");
-								const cursorSpan = document.querySelector(".cursor");
+		<!-- Header -->
+		<header id="header" class="alt">
+			<h1><a href="index.html">Maddox Krape</a></h1>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
 
-								const textArray = ["Problem Solver", "Developer", "Developer", "Student", "Debugger"];
-								const typingDelay = 100;
-								const erasingDelay = 50;
-								const newTextDelay = 1000; // Delay between current and next text
-								let textArrayIndex = 0;
-								let charIndex = 0;
+		<!-- Menu -->
+		<nav id="menu">
+			<div class="inner">
+				<h2>Menu</h2>
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About Me</a></li>
+					<li><a href="projects.html">Projects</a></li>
+				</ul>
+				<a href="#" class="close">Close</a>
+			</div>
+		</nav>
 
-								function type() {
-									if (charIndex < textArray[textArrayIndex].length) {
-										if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-										typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-										charIndex++;
-										setTimeout(type, typingDelay);
-									}
-									else {
-										cursorSpan.classList.remove("typing");
-										setTimeout(erase, newTextDelay);
-									}
-								}
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<div class="logo"><span class="icon fa-gem"></span></div>
+				<div class="typing-container">
+					<h2><span class="typed-text">&nbsp;</span><span class="cursor">&nbsp;</span></h2>
+				</div>
+				<p>Maddox Krape's Digital Portfolio</p>
+			</div>
+			<script>
+				const typedTextSpan = document.querySelector(".typed-text");
+				const cursorSpan = document.querySelector(".cursor");
 
-								function erase() {
-									if (charIndex > 0) {
-										if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-										typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
-										charIndex--;
-										setTimeout(erase, erasingDelay);
-									}
-									else {
-										cursorSpan.classList.remove("typing");
-										textArrayIndex++;
-										if (textArrayIndex >= textArray.length) textArrayIndex = 0;
-										setTimeout(type, typingDelay + 1100);
-									}
-								}
+				const textArray = ["Problem Solver", "Developer", "Developer", "Student", "Debugger"];
+				const typingDelay = 100;
+				const erasingDelay = 50;
+				const newTextDelay = 1000; // Delay between current and next text
+				let textArrayIndex = 0;
+				let charIndex = 0;
 
-								document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
-									if (textArray.length) setTimeout(type, newTextDelay + 250);
-								});
-						</script>
-					</section>
+				function type() {
+					if (charIndex < textArray[textArrayIndex].length) {
+						if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+						typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+						charIndex++;
+						setTimeout(type, typingDelay);
+					}
+					else {
+						cursorSpan.classList.remove("typing");
+						setTimeout(erase, newTextDelay);
+					}
+				}
 
-				<!-- Wrapper -->
-					<section id="wrapper">
+				function erase() {
+					if (charIndex > 0) {
+						if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+						typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+						charIndex--;
+						setTimeout(erase, erasingDelay);
+					}
+					else {
+						cursorSpan.classList.remove("typing");
+						textArrayIndex++;
+						if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+						setTimeout(type, typingDelay + 1100);
+					}
+				}
 
-						<!-- One -->
-							<section id="one" class="wrapper spotlight style1">
-								<div class="inner">
-									<a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
-									<div class="content">
-										<h2 class="major">About Me</h2>
-										<p>Maddox Krape is a developer and problem solver with a passion for creating solutions. Maddox has years of experience in
-										software engineering and has worked on a variety of projects. He loves to brainstorm and solve complex problems, and he
-										has a knack for finding innovative solutions. Maddox is constantly looking for new challenges and is always on the
-										lookout for interesting opportuniy.</p>
-										<a href="#" class="special">Learn more</a>
-									</div>
-								</div>
-							</section>
+				document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
+					if (textArray.length) setTimeout(type, newTextDelay + 250);
+				});
+			</script>
+		</section>
 
-						<!-- Two -->
-							<section id="two" class="wrapper alt spotlight style2">
-								<div class="inner">
-									<a href="#" class="image"><img src="images/chess.webp" alt="" /></a>
-									<div class="content">
-										<h2 class="major">Accomplishments</h2>
-										<h4>Accomplishments</h4>
-										<ul>
-											<li>Over 7 Years of Software Development</li>
-											<li>Perfect Score AP Computer Science Test (5/5)</li>
-											<li>Over 1900 Chess ELO</li>
-										</ul>
-									</div>
-								</div>
-							</section>
+		<!-- Wrapper -->
+		<section id="wrapper">
 
-						<!-- Three
+			<!-- One -->
+			<section id="one" class="wrapper spotlight style1">
+				<div class="inner">
+					<a href="#" class="image"><img src="images/profile.JPG" alt="" /></a>
+					<div class="content">
+						<h2 class="major">About Me</h2>
+						<p>Maddox Krape is a developer and problem solver with a passion for creating solutions. Maddox
+							has years of experience in
+							software engineering and has worked on a variety of projects. He loves to brainstorm and
+							solve complex problems, and he
+							has a knack for finding innovative solutions. Maddox is constantly looking for new
+							challenges and is always on the
+							lookout for interesting opportuniy.</p>
+						<a href="#" class="special">Learn more</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Two -->
+			<section id="two" class="wrapper alt spotlight style2">
+				<div class="inner">
+					<a href="#" class="image"><img src="images/chess.webp" alt="" /></a>
+					<div class="content">
+						<h2 class="major">Accomplishments</h2>
+						<h4>Accomplishments</h4>
+						<ul>
+							<li>Over 7 Years of Software Development</li>
+							<li>Perfect Score AP Computer Science Test (5/5)</li>
+							<li>Over 1900 Chess ELO</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Three
 							<section id="three" class="wrapper spotlight style3">
 								<div class="inner">
 									<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
@@ -138,103 +145,118 @@
 								</div>
 							</section> -->
 
-						<!-- Four -->
-							<section id="four" class="wrapper alt style1">
-								<div class="inner">
-									<h2 class="major">Projects</h2>
-									<p>These are my various projects over my years of learning software development</p>
-									<section class="features">
-										<article>
-											<a href="/gravity-simulation.html" class="image"><img src="images/gravsim.jpg" alt="" /></a>
-											<h3 class="major">Gravity Simulator</h3>
-											<p>For my APCS Final Project, we were given to task to use all of the knowledge we had learned
-												to create a video game. My mind initaly wanted to make chess, but I knew I could push my
-												abilities and challenge myself more. This is when I thought 3-Dimensional, and explored the
-												laws of our universe with a fully working gravitational simulation.
-											</p>
-											<a href="/gravity-simulation.html" class="special">Learn more</a>
-										</article>
-										<article>
-											<a href="elevator-simulation.html" class="image"><img src="images/elevatorfsm.jpg" alt="" /></a>
-											<h3 class="major">Elevator Simulation</h3>
-											<p>Elevator Simulation is a realistic and comprehensive simulation tool that provides an interactive
-											and engaging way to explore the inner workings of elevators. Through this project, I explored the workings of a Finite State Machine (FSM)
-											which simulates many complex components of an elevator and how they all interact to create a safe and efficient ride. Elevator
-											Simulation also provides detailed visuals and animations to make the experience as immersive as possible. Learn the
-											basics of elevator operation and gain a better understanding of implementing FSMs.</p>
-											<a href="elevator-simulation.html" class="special">Learn more</a>
-										</article>
-										<article>
-											<a href="covid19-status/" class="image"><img src="images/covid_graph.png" alt="" /></a>
-											<h3 class="major">Covid-19 Data Visualization</h3>
-											<p>Stay informed and gain valuable insights into the current COVID-19 pandemic with our innovative data
-											visualization tool. This platform provides you with interactive charts, graphs, and other visuals to help you make sense
-											of the data quickly and easily. With its intuitive user interface, you can easily filter and compare data to gain a
-											clearer understanding of the current trends and developments of the pandemic. With this powerful and interactive tool,
-											you can make data-driven decisions and stay up-to-date with the latest developments of the pandemic. Through learning
-											from the data, you can stay informed and make the most informed decisions.
-</p>
-											<a href="covid19-status/" class="special">Learn more</a>
-										</article>
-										<article>
-											<a href="#" class="image"><img src="images/encryption-pci-dss.jpeg" alt="" /></a>
-											<h3 class="major"><h3>Encryption and Decryption</h3>
-											<p>As a strong believer in privacy, researching Encryption and Decryption is a must. 
-												Here is a project ive dedicated myself to about researching encyption algorithms. 
-												Written using multiple encryption tools in GO.</p>
-											<a href="#" class="special">Learn more</a>
-										</article>
-									</section>
-									<ul class="actions">
-										<li><a href="#" class="button">Browse All</a></li>
-									</ul>
-								</div>
-							</section>
-
+			<!-- Four -->
+			<section id="four" class="wrapper alt style1">
+				<div class="inner">
+					<h2 class="major">Projects</h2>
+					<p>These are my various projects over my years of learning software development</p>
+					<section class="features">
+						<article>
+							<a href="/gravity-simulation.html" class="image"><img src="images/gravsim.jpg" alt="" /></a>
+							<h3 class="major">Gravity Simulator</h3>
+							<p>For my APCS Final Project, we were given to task to use all of the knowledge we had
+								learned
+								to create a video game. My mind initaly wanted to make chess, but I knew I could push my
+								abilities and challenge myself more. This is when I thought 3-Dimensional, and explored
+								the
+								laws of our universe with a fully working gravitational simulation.
+							</p>
+							<a href="/gravity-simulation.html" class="special">Learn more</a>
+						</article>
+						<article>
+							<a href="elevator-simulation.html" class="image"><img src="images/elevatorfsm.jpg"
+									alt="" /></a>
+							<h3 class="major">Elevator Simulation</h3>
+							<p>Elevator Simulation is a realistic and comprehensive simulation tool that provides an
+								interactive
+								and engaging way to explore the inner workings of elevators. Through this project, I
+								explored the workings of a Finite State Machine (FSM)
+								which simulates many complex components of an elevator and how they all interact to
+								create a safe and efficient ride. Elevator
+								Simulation also provides detailed visuals and animations to make the experience as
+								immersive as possible. Learn the
+								basics of elevator operation and gain a better understanding of implementing FSMs.</p>
+							<a href="elevator-simulation.html" class="special">Learn more</a>
+						</article>
+						<article>
+							<a href="covid19-status/" class="image"><img src="images/covid_graph.png" alt="" /></a>
+							<h3 class="major">Covid-19 Data Visualization</h3>
+							<p>Stay informed and gain valuable insights into the current COVID-19 pandemic with our
+								innovative data
+								visualization tool. This platform provides you with interactive charts, graphs, and
+								other visuals to help you make sense
+								of the data quickly and easily. With its intuitive user interface, you can easily filter
+								and compare data to gain a
+								clearer understanding of the current trends and developments of the pandemic. With this
+								powerful and interactive tool,
+								you can make data-driven decisions and stay up-to-date with the latest developments of
+								the pandemic. Through learning
+								from the data, you can stay informed and make the most informed decisions.
+							</p>
+							<a href="covid19-status/" class="special">Learn more</a>
+						</article>
+						<article>
+							<a href="#" class="image"><img src="images/encryption-pci-dss.jpeg" alt="" /></a>
+							<h3 class="major">
+								<h3>Encryption and Decryption</h3>
+								<p>As a strong believer in privacy, researching Encryption and Decryption is a must.
+									Here is a project ive dedicated myself to about researching encyption algorithms.
+									Written using multiple encryption tools in GO.</p>
+								<a href="#" class="special">Learn more</a>
+						</article>
 					</section>
+					<ul class="actions">
+						<li><a href="#" class="button">Browse All</a></li>
+					</ul>
+				</div>
+			</section>
 
-				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<h2 class="major">Get in touch</h2>
-							<p>Send me a message! Id love to hear about your project.😊</p>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="email" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="4"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-							<ul class="contact">
-								<li class="icon solid fa-envelope"><a href="#">maddox.krape@gmail.com</a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Maddox K. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
+		</section>
+
+		<!-- Footer -->
+		<section id="footer">
+			<div class="inner">
+				<h2 class="major">Get in touch</h2>
+				<p>Send me a message! Id love to hear about your project.😊</p>
+				<form method="post" action="#">
+					<div class="fields">
+						<div class="field">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" />
 						</div>
-					</section>
-
+						<div class="field">
+							<label for="email">Email</label>
+							<input type="email" name="email" id="email" />
+						</div>
+						<div class="field">
+							<label for="message">Message</label>
+							<textarea name="message" id="message" rows="4"></textarea>
+						</div>
+					</div>
+					<ul class="actions">
+						<li><input type="submit" value="Send Message" /></li>
+					</ul>
+				</form>
+				<ul class="contact">
+					<li class="icon solid fa-envelope"><a href="#">maddox.krape@gmail.com</a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Maddox K. All rights reserved.</li>
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
 			</div>
+		</section>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+	</div>
 
-	</body>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
 </html>
