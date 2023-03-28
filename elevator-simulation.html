@@ -5,131 +5,120 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Elevator Simulation - Maddox Krape</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/elevator-sim.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
+<head>
+	<title>Elevator Simulation - Maddox Krape</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/elevator-sim.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">Maddox Krape</a></h1>
-						<nav>
-							<a href="#menu">Menu</a>
-						</nav>
-					</header>
+<body class="is-preload">
 
-				<!-- Menu -->
-					<nav id="menu">
-						<div class="inner">
-							<h2>Menu</h2>
-							<ul class="links">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="about.html">About Me</a></li>
-								<li><a href="projects.html">Projects</a></li>
-							</ul>
-							<a href="#" class="close">Close</a>
-						</div>
-					</nav>
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
 
-				<!-- Wrapper -->
-					<section id="wrapper">
-						<header>
-							<div class="inner">
-								<h2>Elevator Simulation</h2>
-								<p>Implementing finite state machines and collaborative programming</p>
-							</div>
-						</header>
+		<!-- Header -->
+		<header id="header">
+			<h1><a href="index.html">Maddox Krape</a></h1>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
 
-						<!-- Content -->
-							<div class="wrapper">
-								<div class="inner">
+		<!-- Menu -->
+		<nav id="menu">
+			<div class="inner">
+				<h2>Menu</h2>
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About Me</a></li>
+					<li><a href="projects.html">Projects</a></li>
+				</ul>
+				<a href="#" class="close">Close</a>
+			</div>
+		</nav>
 
-									<h2 class="major">Introduction</h2>
-									<p>Elevator Simulation is a group project that was given in the course A.D.E.N. (Advanced Data Structures, Embedded Systems, and Networking)
-										This is a time-driven and event-driven simulation. The elevators functionality will be modelled using a finite state
-										machine, and passengers will arrive at specified times with intended destinations – just like they would in a
-										real building.
-									</p>
+		<!-- Wrapper -->
+		<section id="wrapper">
+			<header>
+				<div class="inner">
+					<h2>Elevator Simulation</h2>
+					<p>Implementing finite state machines and collaborative programming</p>
+				</div>
+			</header>
 
+			<!-- Content -->
+			<div class="wrapper">
+				<div class="inner">
 
-									<h2 class="major">Programming Deep-Dive</h2>
-
-									<p>As mentioned in the introduction, an elevator is a finite state machine meaning it has no randomness and a fixed number of states. Definition of a <b>Finite State Machine : </b>
-										<blockquote>Finite-state machine (FSM) or finite-state automaton or simply a state
-									machine, is a mathematical model of computation. <b>It is an abstract machine that can be in exactly one of a finite number
-									of states at any given time.</b> -wikipedia.com</blockquote>
-
-									Here is the FSM diagram for the elevator simulation
-									
-
-									<div class="col-12"><span class="image fit"><img src="images/elevatorfsm-removebg-preview.png" alt="" /></span></div>
-										
-									</p>
+					<h2 class="major">Introduction</h2>
+					<p>Elevator Simulation is a group project that was given in the course A.D.E.N. (Advanced Data
+						Structures, Embedded Systems, and Networking)
+						This is a time-driven and event-driven simulation. The elevators functionality will be modelled
+						using a finite state
+						machine, and passengers will arrive at specified times with intended destinations – just like
+						they would in a
+						real building.
+					</p>
 
 
-								</div>
-							</div>
+					<h2 class="major">Programming Deep-Dive</h2>
 
-					</section>
+					<p>As mentioned in the introduction, an elevator is a finite state machine meaning it has no
+						randomness and a fixed number of states. Definition of a <b>Finite State Machine : </b>
+					<blockquote>Finite-state machine (FSM) or finite-state automaton or simply a state
+						machine, is a mathematical model of computation. <b>It is an abstract machine that can be in
+							exactly one of a finite number
+							of states at any given time.</b> -wikipedia.com</blockquote>
 
-				<!-- Footer -->
-					<section id="footer">
-						<div class="inner">
-							<h2 class="major">Get in touch</h2>
-							<p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-							<form method="post" action="#">
-								<div class="fields">
-									<div class="field">
-										<label for="name">Name</label>
-										<input type="text" name="name" id="name" />
-									</div>
-									<div class="field">
-										<label for="email">Email</label>
-										<input type="email" name="email" id="email" />
-									</div>
-									<div class="field">
-										<label for="message">Message</label>
-										<textarea name="message" id="message" rows="4"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</form>
-							<ul class="contact">
-								<li class="icon solid fa-home">
-									Untitled Inc<br />
-									1234 Somewhere Road Suite #2894<br />
-									Nashville, TN 00000-0000
-								</li>
-								<li class="icon solid fa-phone">(000) 000-0000</li>
-								<li class="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-								<li class="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-								<li class="icon brands fa-facebook-f"><a href="#">facebook.com/untitled-tld</a></li>
-								<li class="icon brands fa-instagram"><a href="#">instagram.com/untitled-tld</a></li>
-							</ul>
-							<ul class="copyright">
-								<li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-							</ul>
-						</div>
-					</section>
+					Here is the FSM diagram for the elevator simulation
 
+
+					<div class="col-12"><span class="image fit"><img src="images/elevatorfsm-removebg-preview.png"
+								alt="" /></span></div>
+
+					<h4>We can divide each of these states into their own functons:</h4>
+					<ul>
+						<li><b>STOP</b></li>
+						<li><b>BOARD</b></li>
+						<li><b>OFFLOAD</b></li>
+						<li><b>OPENDOOR</b></li>
+						<li><b>CLOSEDOOR</b></li>
+						<li><b>MOVE 1 FLOOR</b></li>
+					</ul>
+
+					</p>
+
+
+				</div>
 			</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		</section>
 
-	</body>
+		<!-- Footer -->
+		<section id="footer">
+			<div class="inner">
+				<ul class="copyright">
+					<li>&copy; Maddox K. All rights reserved.</li>
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
 </html>
