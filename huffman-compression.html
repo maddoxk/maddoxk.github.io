@@ -53,6 +53,16 @@
 			<!-- Content -->
 			<div class="wrapper">
 				<div class="inner">
+					<h3 class="major">History</h3>
+					<p>Huffman compression, invented by David A. Huffman in 1952, revolutionized data encoding
+						through its innovative
+						variable-length prefix coding system. Inspired by a challenge from his MIT professor,
+						Huffman developed an algorithm
+						that efficiently allocated shorter codes to more frequently occurring symbols. This
+						groundbreaking technique drastically
+						reduced the average code length for messages, transforming the digital landscape and
+						becoming widely adopted in various
+						applications.</p>
 					<h3 class="major">How does compression work?</h3>
 					<p>File compression is the process of reducing the size of a file to save disk space and make it
 						easier to transfer. One
@@ -62,75 +72,188 @@
 						characters with shorter
 						codes, the overall size of the file can be reduced without losing any of the original
 						information.</p>
-					<p>Steps for Huffman Compression</p>
+
+
+					<h3 class="major">Implementation (Part 1: Compression/Encoding)</h3>
 					<ul>
-						<li>UniverseState</li>
-						<p>Since this simulation was technically built inside a game engine, we need a class to take
-							care of the current state of the universe. These are things like the camera, windows, gui,
-							time, gravitational constant, etc.</p>
-						<li>UniverseManager</li>
-						<p>This class is used a to compute and update the state of the universe. It also stores the
-							ArrayLists of celestial bodies and updates them.</p>
-						<li>CelestialBody</li>
-						<p>The most essential class. This classes purpose is to be used as an object to store a body's
-							mass, velocity, and geometry.</p>
-					</ul>
-					</p>
-
-					<h3 class="major">Simulating Gravity</h3>
-					<p>Simulating a universe with gravity can be done using one formula: Newton's law of universal
-						gravitation.</p>
-					<a href="#" class="image"><img src="images/gravity_equation.svg" alt="" /></a>
-					<p>Converting this formula into code can also be quite simple. I've done this by iterating through
-						the ArrayList of celestial bodies and calculating the total effect of gravitational pull from
-						each body on eachother. As seen in code here:</p>
-					<pre><code>for (CelestialBody other : allBodies) {
-	if (other != this) {
-		Vector3f direction = other.getGeometry().getLocalTranslation().subtract(this.getGeometry().getLocalTranslation());
-		<b>Vector3f force = direction.mult(UniverseState.G * other.getMass() / direction.lengthSquared()); // Newton's Law of Universal Gravitation </b>
-		Vector3f acceleration = force.divide(this.getMass());
-		this.currentVelocity = this.currentVelocity.add(acceleration.mult(timeStep));
-	}
-}</code></pre>
-
-					<h4>Deep Dive</h4>
-					<p><span class="image left"><img src="images/finalv1.gif"></span>
-						Here is the first example instance of me getting gravity to work. There is initaly 3 bodies with
-						similar mass but different
-						starting postitions and velocity. Tweaking with some numbers, this was able to produce two
-						bodies that dance together as a binary pair and the other body to orbit them.
-						This is whats know as an "circumbinary system" and is pretty cool to watch. If you'd like to
-						create your own, id highly recommend it as this teached me multiple valuable learning lessons in
-						my software engineering journey. Next, you can try to experiment with different starting
-						positions, velocities, and masses for the bodies in your
-						simulation. This will allow you to see how different initial conditions affect the final outcome
-						of the simulation. You
-						can also try adjusting the gravitational constant to see how it affects the motion of the
-						bodies.
-						You can also try simulating more complex scenarios, such as a system of multiple planets
-						orbiting a star or a galaxy
-						with multiple stars. These types of simulations can be quite challenging to create, but they can
-						also be very rewarding.
-						As you continue to develop your gravity simulator, you can also research and read about the
-						latest advances in the field
-						of celestial mechanics. This will help you to better understand the physics behind your
-						simulation and to improve its
-						accuracy. Overall, developing a gravity simulator can be a fun and educational experience, and
-						can also be a great way to learn
-						about the complexities of the universe. Specifically, how difficult it is to get planets to
-						orbit.</p>
-
-					<p><span class="image right"><img src="images/gravsimulato.gif"></span>
-						On the right is one of my final versions of my simulator. This includes various controls for
-						things like time, gravity, camera, and options to create custom celestial bodies.
-					<h4>Key Takeaways</h4>
-					<ul>
-						<li>How to use object orriented programming as a paradigm to store and manage data as objects.
+						<p>Weights in Huffman Compression refer to the frequencies of characters in the input data. The
+							algorithm assigns shorter
+							codes to more frequently occurring characters and longer codes to less frequent ones,
+							resulting in an efficient
+							compression scheme. To utilize a balanced tree, follow these steps:</p>
+						<li>Determine the frequency (weight) of each character in the input data. <b>Characters with
+								more frequency have more "Weight"</b></li>
+						<li>Create a leaf node for each character and add it to a priority queue based on its frequency.
 						</li>
-						<li>Fundimental physics that is applied in astrophysics</li>
-						<li>How to work with 3 dimensional mathematics such as vectors and how to manipulate them</li>
+						<li>While there is more than one node in the queue, remove the two nodes with the lowest
+							frequencies.</li>
+						<li>Create a new internal node with the sum of the two removed nodes' frequencies as its weight.
+							This new node becomes the
+							parent of the removed nodes.</li>
+						<li>Insert the new internal node back into the priority queue.</li>
+						<li>Repeat steps 3-5 until there is only one node left in the queue, which becomes the root of
+							the balanced Huffman tree.</li>
+						<li>Traverse the tree from the root to each leaf node, assigning a binary code (0 or 1) to each
+							edge along the path. The
+							final code for each character is the sequence of edge codes followed from the root to the
+							corresponding leaf node.</li>
 					</ul>
+					<a href="#" class="image fit"><img src="images/Huffman_huff_demo.gif" alt="" /></a>
+					<p>The following code successfully reads an ASCII file and produces the weights:</p>
+					<pre><code>void generateWeights(String infName) {
+// Open the input file
+File inf = fio.getFileHandle(infName);
+int status = fio.getFileStatus(inf, true);
+
+// Make sure file is readable
+if(readErrorCheck(status)) return;
+
+// reset weights
+initWeights();
+BufferedReader br = fio.openBufferedReader(inf);
+int c = 0;
+	try {
+		// Read the input file one character at a time until EOF
+		while ((c = br.read()) != -1) {
+			try {
+				weights[c]++;
+			} catch (ArrayIndexOutOfBoundsException e) {
+			// Ignore the character if it is not in the ASCII range
+			}
+		}
+		// Increment the count for the EOF character
+		weights[0]++;
+		br.close();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	outf = fio.getFileHandle(infName + ".csv");
+	saveWeightsToFile(outf.getName());
+}</code></pre>
+					<p>The following code successfully takes the weights and file and builds a huffman tree</p>
+					<pre><code>
+/**
+* Builds the huffman tree. Make sure to:
+* 1) initialize root to null (cleanup any prior conversions)
+* 2) re-initialize the encodeMap
+* 3) initialize the queue
+* 4) build the tree:
+* while the queue is not empty:
+* pop the head of the queue into the left HuffmanTreeNode.
+* if the queue is empty - set root = left, and return;
+* pop the head of the queue into the right HuffmanTreeNode
+* create a new non-leaf HuffmanTreeNode whose children are left and right,
+* and whose weight is the sum of the weight of the left and right children
+* add the new node back to the queue.
+*
+* It is assumed that the weights have been initialized prior
+* to calling this method.
+*
+* @param minimize - This is just passed to the method to initialize the queue.
+*/
+void buildHuffmanTree(boolean minimize) {
+	
+	HuffmanTreeNode left, right;
+	
+	root = null;
+	
+	encodeMap = new String[NUM_ASCII];
+	
+	initializeHuffmanQueue(minimize);
+	
+	while (!queue.isEmpty()) {
+		left = queue.poll();
+		if (queue.isEmpty()) {
+			root = left;
+			return;
+		}
+		right = queue.poll();
+		queue.add(new HuffmanTreeNode(left.getWeight() + right.getWeight(), left, right));
+	}
+}
+</code></pre>
+
+					<h3 class="major">Implementation (Part 2: Uncompression/Decoding)</h3>
+					<p>
+						The main objective is to restore the original data from the compressed version. Here's an
+						overview of how
+						Huffman decompression
+						works:
 					</p>
+
+					<ul>
+						<li>
+							Retrieve the Huffman tree: To decode a Huffman compressed file, you need the same Huffman
+							tree that was used during the
+							compression process. This tree is typically stored at the beginning of the compressed file,
+							allowing the decompression
+							algorithm to reconstruct the tree.
+						</li>
+						<li>
+							Traverse the Huffman tree: Start at the root node of the Huffman tree. Read the compressed
+							binary data bit by bit. If
+							the bit is 0, move to the left child node, and if it's 1, move to the right child node.
+						</li>
+						<li>
+							Identify the character: Continue traversing the tree based on the bits in the compressed
+							data until you reach a leaf
+							node, which represents a character in the original data. Append the character to the output.
+						</li>
+						<li>
+							Repeat the process: Go back to the root node of the Huffman tree and continue reading the
+							compressed binary data,
+							traversing the tree, and appending characters to the output until you reach the end of the
+							compressed data.
+						</li>
+						<li>
+							Terminate the output: Some implementations use an End-of-File (EOF) marker to signal the end
+							of the compressed data.
+							When the EOF marker is encountered, the algorithm stops and the decompressed data is
+							complete.
+						</li>
+					</ul>
+
+
+
+
+
+					<h3 class="major">Key Takeaways</h3>
+					<ul>
+						<li>Importance of data compression: Huffman compression is a widely used lossless data
+							compression algorithm that highlights
+							the significance of efficient data storage and transmission.</li>
+
+
+						<li>Adaptive nature: The algorithm adapts to the input data, creating a unique Huffman tree and
+							encoding for each file,
+							which optimizes compression based on the frequency of characters in the data.</li>
+
+
+						<li>Lossless compression: Huffman compression ensures that no information is lost during the
+							process, allowing for accurate
+							reconstruction of the original data during decompression.</li>
+
+
+						<li>Binary tree structure: The use of a binary tree (Huffman tree) is a key aspect of this
+							algorithm, as it enables
+							efficient encoding and decoding of data.</li>
+
+
+						<li>Greedy approach: Huffman coding employs a greedy algorithm, where the most frequent
+							characters are assigned the shortest
+							codes, resulting in optimal compression.</li>
+
+
+						<li>Broad applications: Huffman compression is applicable in various fields, such as image and
+							audio compression, text
+							compression, and in some cases, network protocols like HTTP/2.</li>
+
+
+						<li>Learning experience: Implementing Huffman compression and decompression algorithms provides
+							valuable experience in
+							understanding data structures, algorithms, and programming concepts.</li>
+
+					</ul>
 					<p>
 						You can browse the project on my Github:
 					<ul class="actions">
