@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<!--
+    Solid State by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Maddox K | Hashes</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/hashes.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
+    <link rel="shortcut icon" type="image/png" href="images/fav.png" />
+</head>
+
+<body class="is-preload">
+
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1><a href="index.html">Maddox Krape</a></h1>
+            <nav>
+                <a href="#menu">Menu</a>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <nav id="menu">
+            <div class="inner">
+                <h2>Menu</h2>
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                </ul>
+                <a href="#" class="close">Close</a>
+            </div>
+        </nav>
+
+        <!-- Wrapper -->
+        <section id="wrapper">
+            <header>
+                <div class="inner">
+                    <h2>Hashes</h2>
+                    <p>Data Structures and Algorithms</p>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="wrapper">
+                <div class="inner">
+                    <h2 class="major">Description</h2>
+                    <p>In this project, the objective was to study and implement various hashing algorithms to
+                        efficiently store and retrieve
+                        data in a hash table. Hashing algorithms are widely used in computer science to provide fast
+                        access to data by mapping
+                        keys to array indices.</p>
+                    <h2 class="major">Hash implementation</h2>
+                    <p>
+                        Linear probing is a technique where, if a collision occurs (i.e., two keys hash to the same
+                        index), the algorithm
+                        searches for the next available slot in the hash table sequentially. Quadratic probing, on the
+                        other hand, uses a
+                        quadratic function to determine the next available slot for collision resolution.
+                    </p>
+                    <p>
+                        Linked list hashing handles collisions by creating a linked list at each index of the hash
+                        table. If multiple keys hash
+                        to the same index, they are stored as nodes in the linked list, providing a chain-like structure
+                        for collision
+                        resolution.
+                    </p>
+                    <p>
+                        Cuckoo hashing is a different approach that uses two separate hash functions to compute two
+                        different indices for each
+                        key. If a collision occurs at one index, the key is "kicked out" to its alternate index. This
+                        process continues until
+                        either an empty slot is found or a maximum number of "kicks" is reached.
+
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+        <section id="footer">
+            <div class="inner">
+                <ul class="copyright">
+                    <li>&copy; Maddox K. All rights reserved.</li>
+                    <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -84,6 +84,20 @@
 					<h4>We can divide each of these states into their own functons:</h4>
 					<ul>
 						<li><b>STOP</b></li>
+						<p>Action:
+							– increment timeInState (Elevator)
+							• Next States:
+							– IF there are no calls on ANY floors (CallMgr.callPending()):
+							• nextState is STOP
+							– ELSE get prioritized passenger (CallMgr.prioritizePassengerCalls(floor)):
+							• if passenger on this floor:
+							– set elevator direction per passenger’s request
+							– nextState is OPENDR
+							• else:
+							– set elevator direction necessary to move elevator to passenger’s current floor
+							– set elevator moveToFloor to the passenger’s current floor
+							– set elevator postMoveToFloorDir per the passenger’s request
+							– nextState is MVTOFLR</p>
 						<li><b>BOARD</b></li>
 						<li><b>OFFLOAD</b></li>
 						<li><b>OPENDOOR</b></li>
@@ -92,6 +106,24 @@
 					</ul>
 
 					</p>
+
+					<h4>Each “tick” has 3 phases:></h4>
+					<ul>
+						<li>Checking for the arrival of new passengers</li>
+						<li>Executing the state and determining the next state</li>
+						<li>Updating the GUI if there are a changes</li>
+
+						<li>Executing the state and determining the state has 2 sub-phases:</li>
+						<li>Performing state actions:</li>
+						<li>Actions will occur in the Elevator, Floor and Building classes</li>
+						<li>Determining the next state:</li>
+						<li>Requires information from the Elevator, CallManager and Building classes</li>
+
+						<li>Recommend building a document for each state:</li>
+						<li>Define the action(s) and where they take place</li>
+						<li>Define the decision criteria for each possible next state and where it
+							comes from...</li>
+					</ul>
 
 
 				</div>
