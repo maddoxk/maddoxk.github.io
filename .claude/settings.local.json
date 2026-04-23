@@ -7,7 +7,14 @@
       "Bash(awk '{printf \"%s \\(%s\\)\\\\n\", $9, $5}')",
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(npx tsc *)",
+      "Bash(npm ls *)",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('lucide-react'\\)\\).filter\\(k => /^\\(Git|Link|Mail|Arrow|Menu|X|Copy|Check\\)/.test\\(k\\)\\).slice\\(0,20\\)\\)\")",
+      "Bash(npm uninstall *)",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\('Github' in l, 'Linkedin' in l, 'Twitter' in l, 'Mail' in l\\)\")"
     ]
   }
 }
