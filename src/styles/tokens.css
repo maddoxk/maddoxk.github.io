@@ -1,0 +1,29 @@
+:root {
+  --bg-void: #04060b;
+  --bg-deep: #0a0f1e;
+  --bg-grid: #0f1630;
+  --bg-panel: rgba(10, 15, 30, 0.6);
+  --border-panel: rgba(0, 240, 255, 0.2);
+
+  --fg-primary: #e6f1ff;
+  --fg-muted: #7a8aa8;
+  --fg-dim: #4a5a78;
+
+  --neon-cyan: #00f0ff;
+  --neon-magenta: #ff2bd6;
+  --neon-violet: #9d00ff;
+  --neon-amber: #ffb300;
+  --neon-green: #00ff9d;
+
+  --glow-cyan-sm: 0 0 8px #00f0ff, 0 0 20px rgba(0, 240, 255, 0.4);
+  --glow-cyan-md: 0 0 12px #00f0ff, 0 0 32px rgba(0, 240, 255, 0.4);
+  --glow-cyan-lg: 0 0 20px #00f0ff, 0 0 60px rgba(0, 240, 255, 0.5);
+  --glow-magenta-sm: 0 0 8px #ff2bd6, 0 0 20px rgba(255, 43, 214, 0.4);
+  --glow-magenta-md: 0 0 12px #ff2bd6, 0 0 32px rgba(255, 43, 214, 0.4);
+
+  --font-display: 'Orbitron', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}

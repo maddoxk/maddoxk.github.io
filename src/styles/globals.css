@@ -1,7 +1,58 @@
 @import "tailwindcss";
+@import "./tokens.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/jetbrains-mono/600.css";
+@import "@fontsource/jetbrains-mono/700.css";
+@import "@fontsource/orbitron/500.css";
+@import "@fontsource/orbitron/700.css";
+@import "@fontsource/orbitron/900.css";
 
-body {
+@theme {
+  --color-void: var(--bg-void);
+  --color-deep: var(--bg-deep);
+  --color-panel: var(--bg-panel);
+  --color-fg: var(--fg-primary);
+  --color-muted: var(--fg-muted);
+  --color-cyan-neon: var(--neon-cyan);
+  --color-magenta-neon: var(--neon-magenta);
+  --color-violet-neon: var(--neon-violet);
+  --color-amber-neon: var(--neon-amber);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
   margin: 0;
-  background: #04060b;
-  color: #e6f1ff;
+  background: var(--bg-void);
+  color: var(--fg-primary);
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { overflow-x: hidden; }
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.1;
+  margin: 0;
+}
+
+a { color: var(--neon-cyan); text-decoration: none; }
+a:hover { text-shadow: var(--glow-cyan-sm); }
+
+::selection { background: var(--neon-cyan); color: var(--bg-void); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
