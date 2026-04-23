@@ -1,5 +1,6 @@
 import { HashRouter, Routes, Route } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
+import Layout from './components/layout/Layout'
 
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
@@ -21,16 +22,18 @@ export default function Router() {
     <HashRouter>
       <Suspense fallback={<Fallback />}>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/gravity" element={<Gravity />} />
-          <Route path="/projects/elevator" element={<Elevator />} />
-          <Route path="/projects/huffman" element={<Huffman />} />
-          <Route path="/projects/hashes" element={<Hashes />} />
-          <Route path="/projects/covid" element={<Covid />} />
-          <Route path="/projects/search" element={<Search />} />
-          <Route path="*" element={<NotFound />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/gravity" element={<Gravity />} />
+            <Route path="/projects/elevator" element={<Elevator />} />
+            <Route path="/projects/huffman" element={<Huffman />} />
+            <Route path="/projects/hashes" element={<Hashes />} />
+            <Route path="/projects/covid" element={<Covid />} />
+            <Route path="/projects/search" element={<Search />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </Suspense>
     </HashRouter>
