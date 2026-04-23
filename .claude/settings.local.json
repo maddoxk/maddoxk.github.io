@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '{print $9, \"\\(\" $5 \"\\)\"}')",
+      "Bash(find /Users/maddox/Projects/maddoxk.github.io/.claude/worktrees/clever-ishizaka-6f96d4/images -type f -exec ls -lh {} \\\\;)",
+      "Bash(find /Users/maddox/Projects/maddoxk.github.io/.claude/worktrees/clever-ishizaka-6f96d4/videos -type f -exec ls -lh {} \\\\;)",
+      "Bash(awk '{printf \"%s \\(%s\\)\\\\n\", $9, $5}')",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
