@@ -108,3 +108,7 @@ a:hover { text-shadow: var(--glow-cyan-sm); }
     color: transparent;
   }
 }
+
+@media (pointer: fine) {
+  html, body, * { cursor: none !important; }
+}
