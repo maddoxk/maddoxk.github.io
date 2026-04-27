@@ -1,5 +1,11 @@
 import Router from './router'
+import BootSequence from './components/fx/BootSequence'
 
 export default function App() {
-  return <Router />
+  return (
+    <>
+      <BootSequence />
+      <Router />
+    </>
+  )
 }
