@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import * as THREE from 'three'
 import type { CycleState } from './useLightcycleAI'
 
@@ -10,6 +10,10 @@ export default function Lightcycle({ cycle }: { cycle: CycleState }) {
     const g = new THREE.BufferGeometry().setFromPoints(points)
     return g
   }, [points])
+
+  // Manually dispose the BufferGeometry — r3f only auto-disposes geometries
+  // declared as JSX children. Without this, each tick leaks GPU buffers.
+  useEffect(() => () => geometry.dispose(), [geometry])
 
   const head = cycle.trail[cycle.trail.length - 1]
 

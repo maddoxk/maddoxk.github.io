@@ -1,9 +1,22 @@
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
 export default function GridFloor() {
   const matRef = useRef<THREE.ShaderMaterial>(null)
+
+  // Hoist uniforms so an ancestor re-render doesn't reset uTime to 0
+  // mid-animation by handing the material a fresh uniforms object.
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uColor: { value: new THREE.Color('#00f0ff') },
+      uLineWidth: { value: 0.02 },
+      uGridSize: { value: 2.0 },
+      uScrollSpeed: { value: 2.0 },
+    }),
+    [],
+  )
 
   useFrame((_, delta) => {
     if (matRef.current) matRef.current.uniforms.uTime.value += delta
@@ -15,13 +28,7 @@ export default function GridFloor() {
       <shaderMaterial
         ref={matRef}
         transparent
-        uniforms={{
-          uTime: { value: 0 },
-          uColor: { value: new THREE.Color('#00f0ff') },
-          uLineWidth: { value: 0.02 },
-          uGridSize: { value: 2.0 },
-          uScrollSpeed: { value: 2.0 },
-        }}
+        uniforms={uniforms}
         vertexShader={`
           varying vec2 vUv;
           varying vec3 vWorldPosition;

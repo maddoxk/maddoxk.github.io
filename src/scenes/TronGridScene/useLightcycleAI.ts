@@ -1,5 +1,21 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
+
+// --- Game tuning knobs ---
+// ARENA: half-extent of the play area (meters). A cycle is dead if it leaves
+// [-ARENA, ARENA] on either axis.
+// TICK_MS: simulation step interval. Each tick advances every alive cycle by
+// one grid cell.
+// MAX_TRAIL: maximum trail length per cycle before the oldest point is dropped.
+// Caps memory and per-tick collision-check cost.
+// FORWARD_BIAS: probability that a cycle continues forward when forward is a
+// safe move. Lower => more chaotic / shorter rounds.
+// RESPAWN_MS: delay after both cycles die before a new round spawns.
+const ARENA = 40
+const TICK_MS = 80
+const MAX_TRAIL = 300
+const FORWARD_BIAS = 0.6
+const RESPAWN_MS = 1500
 
 export type Dir = 'N' | 'S' | 'E' | 'W'
 const DIR_VEC: Record<Dir, [number, number]> = {
@@ -16,17 +32,17 @@ export type CycleState = {
   alive: boolean
 }
 
-const ARENA = 40 // half-extent
-const TICK_MS = 80
-const MAX_TRAIL = 300
-
-function spawnCycle(id: CycleState['id'], seed: number): CycleState {
-  // Spawn in opposite corners
+function spawnCycle(id: CycleState['id']): CycleState {
+  // Spawn in opposite corners moving toward each other.
   const x = id === 'cyan' ? -ARENA * 0.6 : ARENA * 0.6
   const z = id === 'cyan' ? -ARENA * 0.6 : ARENA * 0.6
   const dir: Dir = id === 'cyan' ? 'S' : 'N'
   const pos = new THREE.Vector3(x, 0, z)
   return { id, pos: pos.clone(), dir, trail: [pos.clone()], alive: true }
+}
+
+function freshRound(): CycleState[] {
+  return [spawnCycle('cyan'), spawnCycle('magenta')]
 }
 
 function occupied(x: number, z: number, cycles: CycleState[]): boolean {
@@ -49,28 +65,21 @@ function chooseDir(c: CycleState, cycles: CycleState[]): Dir {
     return !occupied(c.pos.x + dx, c.pos.z + dz, cycles)
   })
   if (safe.length === 0) return forward // doomed
-  if (safe.includes(forward) && Math.random() < 0.6) return forward
+  if (safe.includes(forward) && Math.random() < FORWARD_BIAS) return forward
   return safe[Math.floor(Math.random() * safe.length)]
 }
 
 export function useLightcycleAI() {
-  const [cycles, setCycles] = useState<CycleState[]>([
-    spawnCycle('cyan', 1),
-    spawnCycle('magenta', 2),
-  ])
-  const cyclesRef = useRef(cycles)
-  cyclesRef.current = cycles
+  const [cycles, setCycles] = useState<CycleState[]>(freshRound)
+  const respawnTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const reset = useCallback(() => {
-    setTimeout(() => {
-      setCycles([spawnCycle('cyan', Math.random()), spawnCycle('magenta', Math.random())])
-    }, 1500)
-  }, [])
-
+  // Step the simulation. The setCycles updater must stay pure — respawn
+  // scheduling lives in a separate effect that watches `cycles` so it can
+  // tolerate StrictMode's double-invocation of updaters.
   useEffect(() => {
     const interval = setInterval(() => {
-      setCycles(prev => {
-        const next = prev.map(c => {
+      setCycles(prev =>
+        prev.map(c => {
           if (!c.alive) return c
           const dir = chooseDir(c, prev)
           const [dx, dz] = DIR_VEC[dir]
@@ -83,18 +92,30 @@ export function useLightcycleAI() {
           const trail = [...c.trail, newPos]
           if (trail.length > MAX_TRAIL) trail.shift()
           return { ...c, pos: newPos, dir, trail }
-        })
-        if (next.every(c => !c.alive)) {
-          setTimeout(() => setCycles([
-            spawnCycle('cyan', Math.random()),
-            spawnCycle('magenta', Math.random()),
-          ]), 1500)
-        }
-        return next
-      })
+        }),
+      )
     }, TICK_MS)
     return () => clearInterval(interval)
   }, [])
+
+  // Schedule a single respawn whenever every cycle is dead. Clearing any
+  // pending timer first keeps StrictMode (or rapid state updates) from
+  // queueing duplicate respawns.
+  useEffect(() => {
+    const allDead = cycles.length > 0 && cycles.every(c => !c.alive)
+    if (!allDead) return
+    if (respawnTimer.current) clearTimeout(respawnTimer.current)
+    respawnTimer.current = setTimeout(() => {
+      setCycles(freshRound())
+      respawnTimer.current = null
+    }, RESPAWN_MS)
+    return () => {
+      if (respawnTimer.current) {
+        clearTimeout(respawnTimer.current)
+        respawnTimer.current = null
+      }
+    }
+  }, [cycles])
 
   return cycles
 }
