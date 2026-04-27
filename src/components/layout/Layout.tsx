@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Nav from './Nav'
 import Footer from './Footer'
-import CustomCursor from './CustomCursor'
+import CustomCursor from '../fx/CustomCursor'
 import Scanlines from '../fx/Scanlines'
 
 const TronGridScene = lazy(() => import('../../scenes/TronGridScene'))

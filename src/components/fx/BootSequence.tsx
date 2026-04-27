@@ -10,7 +10,7 @@ const LINES = [
 ]
 
 export default function BootSequence() {
-  const seen = typeof window !== 'undefined' && sessionStorage.getItem('booted') === '1'
+  const seen = typeof window !== 'undefined' && sessionStorage.getItem('portfolio:booted') === '1'
   const [visible, setVisible] = useState(!seen)
   const [shown, setShown] = useState(0)
 
@@ -22,7 +22,7 @@ export default function BootSequence() {
     })
     timers.push(
       window.setTimeout(() => {
-        sessionStorage.setItem('booted', '1')
+        sessionStorage.setItem('portfolio:booted', '1')
         setVisible(false)
       }, LINES.length * 280 + 400),
     )

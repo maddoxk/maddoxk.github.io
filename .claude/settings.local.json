@@ -16,7 +16,8 @@
       "Bash(npm uninstall *)",
       "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\('Github' in l, 'Linkedin' in l, 'Twitter' in l, 'Mail' in l\\)\")",
       "Bash(git stash *)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(git mv *)"
     ]
   }
 }

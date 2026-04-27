@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react'
 
+// Pool of glyphs the scrambler picks from. Underscores are weighted heavily
+// so the scramble has the empty-terminal-cell look during the reveal sweep.
+const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#________'
+const TICK_MS = 40
+
 export default function GlitchText({
   text,
   className = '',
@@ -11,14 +16,13 @@ export default function GlitchText({
 }) {
   const [display, setDisplay] = useState('')
   useEffect(() => {
-    const chars = '!<>-_\\/[]{}—=+*^?#________'
     let frame = 0
     const len = text.length
     const iv = setInterval(() => {
       let out = ''
       for (let i = 0; i < len; i++) {
         if (i < frame) out += text[i]
-        else out += chars[Math.floor(Math.random() * chars.length)]
+        else out += SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
       }
       setDisplay(out)
       frame++
@@ -26,7 +30,7 @@ export default function GlitchText({
         clearInterval(iv)
         setDisplay(text)
       }
-    }, 40)
+    }, TICK_MS)
     return () => clearInterval(iv)
   }, [text])
 
@@ -46,7 +50,9 @@ export default function GlitchText({
       >
         {display}
       </span>
-      <span className="relative">{display}</span>
+      {/* aria-hidden because the wrapper carries aria-label={text}; without
+          this the screen reader would announce the scrambled glyphs too. */}
+      <span aria-hidden className="relative">{display}</span>
     </Tag>
   )
 }
