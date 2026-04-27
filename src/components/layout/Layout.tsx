@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Nav from './Nav'
 import Footer from './Footer'
+import Scanlines from '../fx/Scanlines'
 
 const TronGridScene = lazy(() => import('../../scenes/TronGridScene'))
 
@@ -11,6 +12,7 @@ export default function Layout() {
       <Suspense fallback={null}>
         <TronGridScene />
       </Suspense>
+      <Scanlines />
       <Nav />
       <main className="flex-1 pt-20 relative z-10">
         <Outlet />
