@@ -1,22 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { STATS } from '@/data/stats'
-
-function useInView() {
-  const ref = useRef<HTMLDivElement>(null)
-  const [inView, setInView] = useState(false)
-  useEffect(() => {
-    if (!ref.current) return
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        setInView(true)
-        io.disconnect()
-      }
-    }, { threshold: 0.3 })
-    io.observe(ref.current)
-    return () => io.disconnect()
-  }, [])
-  return { ref, inView }
-}
+import { useInView } from '@/hooks/useInView'
 
 function Counter({ value, duration = 1200 }: { value: number; duration?: number }) {
   const [n, setN] = useState(0)

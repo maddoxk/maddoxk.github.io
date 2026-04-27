@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import GlitchText from '@/components/fx/GlitchText'
+import CyclingTagline from '@/components/fx/CyclingTagline'
 import SectionHeading from '@/components/ui/SectionHeading'
 import NeonButton from '@/components/ui/NeonButton'
 import ProjectCard from '@/components/project/ProjectCard'
@@ -7,43 +7,6 @@ import StatsHUD from '@/components/ui/StatsHUD'
 import { PROJECTS } from '@/data/projects'
 import { SKILLS } from '@/data/skills'
 import { Github, Mail } from 'lucide-react'
-
-const TAGLINES = ['PROBLEM_SOLVER', 'DEVELOPER', 'STUDENT', 'DEBUGGER', 'COLLABORATOR']
-
-function CyclingTagline() {
-  const [i, setI] = useState(0)
-  const [txt, setTxt] = useState('')
-  const [phase, setPhase] = useState<'typing' | 'holding' | 'erasing'>('typing')
-
-  useEffect(() => {
-    const target = TAGLINES[i]
-    if (phase === 'typing') {
-      if (txt.length < target.length) {
-        const t = setTimeout(() => setTxt(target.slice(0, txt.length + 1)), 70)
-        return () => clearTimeout(t)
-      } else {
-        const t = setTimeout(() => setPhase('erasing'), 1400)
-        return () => clearTimeout(t)
-      }
-    }
-    if (phase === 'erasing') {
-      if (txt.length > 0) {
-        const t = setTimeout(() => setTxt(txt.slice(0, -1)), 35)
-        return () => clearTimeout(t)
-      } else {
-        setPhase('typing')
-        setI((i + 1) % TAGLINES.length)
-      }
-    }
-  }, [txt, phase, i])
-
-  return (
-    <span className="text-cyan-neon font-mono">
-      {txt}
-      <span className="inline-block w-2 h-5 bg-cyan-neon ml-1 animate-pulse" />
-    </span>
-  )
-}
 
 export default function Home() {
   return (

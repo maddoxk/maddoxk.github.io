@@ -9,6 +9,12 @@ type Props = {
   variant?: 'cyan' | 'magenta'
 }
 
+// Treat absolute http(s) URLs as external — they get target="_blank".
+// mailto:, tel:, and relative paths stay in the same tab.
+function isExternalHref(href: string) {
+  return /^https?:\/\//i.test(href)
+}
+
 export default function NeonButton({ children, to, href, onClick, variant = 'cyan' }: Props) {
   const color = variant === 'cyan' ? 'var(--neon-cyan)' : 'var(--neon-magenta)'
   const base = (
@@ -20,6 +26,17 @@ export default function NeonButton({ children, to, href, onClick, variant = 'cya
     </span>
   )
   if (to) return <Link to={to}>{base}</Link>
-  if (href) return <a href={href} target="_blank" rel="noreferrer">{base}</a>
-  return <button onClick={onClick}>{base}</button>
+  if (href) {
+    const external = isExternalHref(href)
+    return (
+      <a href={href} {...(external && { target: '_blank', rel: 'noreferrer' })}>
+        {base}
+      </a>
+    )
+  }
+  return (
+    <button type="button" onClick={onClick}>
+      {base}
+    </button>
+  )
 }
