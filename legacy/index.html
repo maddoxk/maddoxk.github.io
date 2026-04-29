@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<!--
+	Solid State by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Maddox Krape</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<h1><a href="index.html">Maddox Krape</a></h1>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<div class="inner">
+				<h2>Menu</h2>
+				<ul class="links">
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About Me</a></li>
+					<li><a href="projects.html">Projects</a></li>
+				</ul>
+				<a href="#" class="close">Close</a>
+			</div>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner">
+			<div class="inner">
+				<div class="logo"><span class="icon fa-lightbulb"></span></div>
+				<div class="typing-container">
+					<h2><span class="typed-text">&nbsp;</span><span class="cursor">&nbsp;</span></h2>
+				</div>
+				<p>Maddox Krape's Digital Portfolio</p>
+			</div>
+			<script>
+				const typedTextSpan = document.querySelector(".typed-text");
+				const cursorSpan = document.querySelector(".cursor");
+
+				const textArray = ["Problem Solver", "Developer", "Student", "Debugger", "Collaborator"];
+				const typingDelay = 100;
+				const erasingDelay = 50;
+				const newTextDelay = 1000; // Delay between current and next text
+				let textArrayIndex = 0;
+				let charIndex = 0;
+
+				function type() {
+					if (charIndex < textArray[textArrayIndex].length) {
+						if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+						typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+						charIndex++;
+						setTimeout(type, typingDelay);
+					}
+					else {
+						cursorSpan.classList.remove("typing");
+						setTimeout(erase, newTextDelay);
+					}
+				}
+
+				function erase() {
+					if (charIndex > 0) {
+						if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+						typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+						charIndex--;
+						setTimeout(erase, erasingDelay);
+					}
+					else {
+						cursorSpan.classList.remove("typing");
+						textArrayIndex++;
+						if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+						setTimeout(type, typingDelay + 1100);
+					}
+				}
+
+				document.addEventListener("DOMContentLoaded", function () { // On DOM Load initiate the effect
+					if (textArray.length) setTimeout(type, newTextDelay + 250);
+				});
+			</script>
+		</section>
+
+		<!-- Wrapper -->
+		<section id="wrapper">
+
+			<!-- One -->
+			<section id="one" class="wrapper spotlight style1">
+				<div class="inner">
+					<a href="#" class="image"><img src="images/profile.jpg" alt="" /></a>
+					<div class="content">
+						<h2 class="major">About Me</h2>
+						<p>Hey! I'm a developer and problem solver with a passion for creating solutions. I have
+							has years of experience in
+							software engineering and have worked on a variety of projects. I love to brainstorm and
+							solve complex problems, and I
+							have a knack for finding innovative solutions. I am constantly looking for new
+							challenges and is always on the
+							lookout for interesting opportuniy.</p>
+						<a href="#" class="special">Learn more</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Two -->
+			<section id="two" class="wrapper alt spotlight style2">
+				<div class="inner">
+					<a href="#" class="image"><img src="images/chess.webp" alt="" /></a>
+					<div class="content">
+						<h2 class="major">Accomplishments</h2>
+						<h4>Accomplishments</h4>
+						<ul>
+							<li>Over 7 Years of Software Development</li>
+							<li>Perfect Score AP Computer Science Test (5/5)</li>
+							<li>Over 1600 Chess ELO</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+
+			<!-- Three
+							<section id="three" class="wrapper spotlight style3">
+								<div class="inner">
+									<a href="#" class="image"><img src="images/pic03.jpg" alt="" /></a>
+									<div class="content">
+										<h2 class="major">Projects</h2>
+										<p></p>
+										<a href="#" class="special">Learn more</a>
+									</div>
+								</div>
+							</section> -->
+
+			<!-- Four -->
+			<section id="four" class="wrapper alt style1">
+				<div class="inner">
+					<h2 class="major">Projects</h2>
+					<p>These are my various projects over my years of learning software development</p>
+					<section class="features">
+						<article>
+							<a href="/gravity-simulation.html" class="image"><img src="images/gravsim.jpg" alt="" /></a>
+							<h3 class="major">Gravity Simulator</h3>
+							<p>APCS A Final Project
+							</p>
+							<a href="/gravity-simulation.html" class="special">Learn more</a>
+						</article>
+						<article>
+							<a href="elevator-simulation.html" class="image"><img src="images/elevatorfsm.jpg"
+									alt="" /></a>
+							<h3 class="major">Elevator Simulation</h3>
+							<p>Elevator Simulation is a realistic and comprehensive simulation tool that provides an
+								interactive
+								and engaging way to explore the inner workings of elevators. Through this project, I
+								explored the workings of a Finite State Machine (FSM)
+								which simulates many complex components of an elevator and how they all interact to
+								create a safe and efficient ride. Elevator
+								Simulation also provides detailed visuals and animations to make the experience as
+								immersive as possible. Learn the
+								basics of elevator operation and gain a better understanding of implementing FSMs.</p>
+							<a href="elevator-simulation.html" class="special">Learn more</a>
+						</article>
+						<article>
+							<a href="covid19-status/" class="image"><img src="images/covid_graph.png" alt="" /></a>
+							<h3 class="major">Covid-19 Data Visualization</h3>
+							<p>COVID-19 Virus Data Visualization made with HTML5, CSS, JS and Chart.js Javascript
+								Library.
+							</p>
+							<a href="covid19-status/" class="special">Learn more</a>
+						</article>
+						<article>
+							<a href="huffman-compression.html" class="image"><img src="images/huffman-tree.png"
+									alt="" /></a>
+							<h3 class="major">
+								<h3>Huffman Compression</h3>
+								<p>Huffman compression assigns shorter codes to frequently occurring symbols in a
+									message, resulting in a more efficient
+									encoding and smaller file size. Learn how this is implemented in this project.</p>
+								<a href="huffman-compression.html" class="special">Learn more</a>
+						</article>
+						<article>
+							<a href="hashes.html" class="image"><img src="images/hashes.jpg" alt="" /></a>
+							<h3 class="major">
+								<h3>Hashes</h3>
+								<p>Hashes</p>
+								<a href="hashes.html" class="special">Learn more</a>
+							</h3>
+						</article>
+						<article>
+							<a href="Search Algorithms.html" class="image"><img src="" alt="" /></a>
+							<h3 class="major">
+								<h3>Search Algorithms</h3>
+								<p>...</p>
+								<a href="search-algorithms.html" class="special">Learn more</a>
+							</h3>
+						</article>
+					</section>
+				</div>
+			</section>
+
+		</section>
+
+		<!-- Footer -->
+		<section id="footer">
+			<div class="inner">
+				<ul class="copyright">
+					<li>&copy; Maddox K. All rights reserved.</li>
+					<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
