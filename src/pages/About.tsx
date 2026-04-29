@@ -7,7 +7,8 @@ const TIMELINE = [
   { year: '7+ yrs ago', title: 'First lines of code', body: 'Started tinkering and never stopped.' },
   { year: 'High school', title: 'AP Computer Science A', body: 'Earned a perfect 5/5 on the exam.' },
   { year: 'Ongoing', title: 'Simulation & algorithms', body: 'Built gravity simulators, FSM-driven elevators, Huffman compressors, and hash table experiments.' },
-  { year: 'Now', title: 'Exploring the web in 3D', body: 'Bringing cyberpunk aesthetics and real-time 3D to the browser.' },
+  { year: 'College', title: 'Pursuing a BS in Computer Science', body: 'Currently enrolled and deepening my foundations across systems, theory, and software engineering.' },
+  { year: 'Now', title: 'Exploring the web in 3D', body: 'Learning new technologies and bringing cyberpunk aesthetics and real-time 3D to the browser.' },
 ]
 
 export default function About() {
