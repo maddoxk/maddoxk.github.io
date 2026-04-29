@@ -4,6 +4,7 @@ import Nav from './Nav'
 import Footer from './Footer'
 import CustomCursor from '../fx/CustomCursor'
 import Scanlines from '../fx/Scanlines'
+import PageTransition from '../fx/PageTransition'
 
 const TronGridScene = lazy(() => import('../../scenes/TronGridScene'))
 
@@ -17,7 +18,9 @@ export default function Layout() {
       <CustomCursor />
       <Nav />
       <main className="flex-1 pt-20 relative z-10">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
     </div>
