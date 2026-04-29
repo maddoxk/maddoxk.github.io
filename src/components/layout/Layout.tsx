@@ -5,10 +5,12 @@ import Footer from './Footer'
 import CustomCursor from '../fx/CustomCursor'
 import Scanlines from '../fx/Scanlines'
 import PageTransition from '../fx/PageTransition'
+import { useLenis } from '@/hooks/useLenis'
 
 const TronGridScene = lazy(() => import('../../scenes/TronGridScene'))
 
 export default function Layout() {
+  useLenis()
   return (
     <div className="min-h-screen flex flex-col relative">
       <Suspense fallback={null}>
