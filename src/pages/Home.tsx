@@ -38,7 +38,7 @@ export default function Home() {
         <div className="grid md:grid-cols-[auto_1fr] gap-8 items-start">
           <div className="relative">
             <img
-              src="/images/profile.JPG"
+              src="/images/profile.jpeg"
               alt="Maddox Krape"
               className="w-48 h-48 object-cover cyber-border"
               style={{ borderColor: 'var(--neon-cyan)' }}

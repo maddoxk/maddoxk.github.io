@@ -23,7 +23,7 @@ export default function About() {
 
       <section className="grid md:grid-cols-[240px_1fr] gap-10 items-start mb-20">
         <img
-          src="/images/profile.JPG"
+          src="/images/profile.jpeg"
           alt="Maddox Krape"
           className="w-60 h-60 object-cover cyber-border"
           style={{ borderColor: 'var(--neon-cyan)' }}
