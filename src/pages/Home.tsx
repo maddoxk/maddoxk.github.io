@@ -9,6 +9,7 @@ import VariableProximity from '@/components/reactbits/VariableProximity'
 import CircularGallery from '@/components/reactbits/CircularGallery'
 import DitherBackground from '@/components/reactbits/DitherBackground'
 import LogoLoop from '@/components/reactbits/LogoLoop'
+import CurvedLoop from '@/components/reactbits/CurvedLoop'
 import { PROJECTS } from '@/data/projects'
 import { Github, Mail, ArrowRight, User, Briefcase, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -95,6 +96,15 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+      {/* Multi-section Spanning CurvedLoop Ribbon Accent */}
+      <div className="relative w-full overflow-hidden -my-10 pointer-events-none z-10 opacity-70">
+        <CurvedLoop
+          marqueeText="MADDOX KRAPE • COMPUTER SCIENCE • ALGORITHMS & SIMULATIONS • AI AGENTS • "
+          speed={1.0}
+          curveAmount={140}
+        />
+      </div>
 
       {/* About Preview */}
       <section id="background-section" className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
