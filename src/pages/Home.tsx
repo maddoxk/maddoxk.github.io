@@ -6,6 +6,7 @@ import ShinyText from '@/components/reactbits/ShinyText'
 import SpotlightCard from '@/components/reactbits/SpotlightCard'
 import Particles from '@/components/reactbits/Particles'
 import TrueFocus from '@/components/reactbits/TrueFocus'
+import CircularGallery from '@/components/reactbits/CircularGallery'
 import { PROJECTS } from '@/data/projects'
 import { SKILLS } from '@/data/skills'
 import { Github, Mail, ArrowRight, Code2, User, Briefcase, ChevronDown } from 'lucide-react'
@@ -122,6 +123,64 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.slice(0, 6).map(p => <ProjectCard key={p.slug} project={p} />)}
         </div>
+      </section>
+
+      {/* Tools & AI Workflows Circular Gallery */}
+      <section className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40 overflow-hidden">
+        <SectionHeading
+          eyebrow="Stack & Workflows"
+          title="Tools & AI Agent Architectures"
+        />
+        <p className="text-muted-foreground text-sm max-w-xl mb-6 font-sans">
+          Click or step through the 3D circular gallery below to explore my primary development tools, frameworks, and autonomous AI agent workflows.
+        </p>
+
+        <CircularGallery
+          items={[
+            {
+              title: 'React & Vite',
+              category: 'Frontend Core',
+              description: 'Fast modern component architectures with TypeScript, Tailwind CSS v4, and Shadcn UI design systems.',
+              icon: '⚡',
+              tags: ['React 18', 'Vite', 'TypeScript', 'Tailwind'],
+            },
+            {
+              title: 'Autonomous AI Agents',
+              category: 'AI Workflow',
+              description: 'Multi-agent orchestration using specialized subagents, background task loops, and tool calling.',
+              icon: '🤖',
+              tags: ['Agentic Coding', 'Subagents', 'Task Execution'],
+            },
+            {
+              title: 'Transformers.js & RAG',
+              category: 'Client-side AI',
+              description: 'In-browser vector embeddings (all-MiniLM-L6-v2) and top-K cosine similarity retrieval over local corpora.',
+              icon: '🧠',
+              tags: ['ONNX Runtime', 'Vector Search', 'RAG'],
+            },
+            {
+              title: 'Go & Microservices',
+              category: 'Backend Systems',
+              description: 'Double-entry payment ledgers, high-concurrency HTTP API gateways, and distributed rate limiters.',
+              icon: '🐹',
+              tags: ['Go 1.25', 'SQLite', 'Double-Entry', 'ISO-20022'],
+            },
+            {
+              title: 'Rust & Tokio',
+              category: 'Systems & Async',
+              description: 'Distributed job queue engines, Tokio async worker pools, atomic database leases, and DLQ handling.',
+              icon: '⚙️',
+              tags: ['Rust', 'Tokio', 'Axum', 'Async Workers'],
+            },
+            {
+              title: 'Python ML & Backtesting',
+              category: 'Quant & Data',
+              description: 'Vectorized equity backtest engines, ARIMA/LSTM time-series forecasting, and stats-arbitrage research.',
+              icon: '🐍',
+              tags: ['Python', 'Pandas', 'NumPy', 'Scikit-Learn'],
+            },
+          ]}
+        />
       </section>
 
       {/* Tech Stack */}
