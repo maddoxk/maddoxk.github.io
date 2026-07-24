@@ -458,7 +458,7 @@ export interface ASCIITextProps {
 
 export default function ASCIIText({
   text = 'Maddox',
-  asciiFontSize = 10,
+  asciiFontSize = 4,
   textFontSize = 200,
   textColor = '#fdf9f3',
   planeBaseHeight = 8,
