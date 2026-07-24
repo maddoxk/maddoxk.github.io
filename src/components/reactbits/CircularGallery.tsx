@@ -42,12 +42,12 @@ export default function CircularGallery({
 
   return (
     <div
-      className={`relative w-full max-w-5xl mx-auto py-12 px-4 ${className}`}
+      className={`relative w-full max-w-5xl mx-auto py-12 px-4 flex flex-col items-center justify-center ${className}`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* 3D Circular Arc Viewport */}
-      <div className="relative h-[440px] flex items-center justify-center overflow-visible">
+      {/* 3D Circular Arc Viewport with Perspective */}
+      <div className="relative w-full h-[460px] flex items-center justify-center overflow-visible [perspective:1000px] [transform-style:preserve-3d]">
         {items.map((item, index) => {
           const total = items.length
           let offset = index - activeIndex
@@ -59,7 +59,7 @@ export default function CircularGallery({
 
           // Enhanced 3D circular arc layout math
           const angle = (offset / total) * Math.PI * 1.5 // Arc curve spread
-          const radius = 320 // 3D ring radius in px
+          const radius = 300 // 3D ring radius in px
 
           const translateX = Math.sin(angle) * radius
           const translateZ = Math.cos(angle) * radius - radius // Depth recession
@@ -72,7 +72,7 @@ export default function CircularGallery({
             <div
               key={item.title}
               onClick={() => setActiveIndex(index)}
-              className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-84 rounded-2xl border p-6 backdrop-blur-xl transition-all duration-700 ease-out cursor-pointer shadow-xl select-none ${
+              className={`absolute top-1/2 left-1/2 w-72 sm:w-84 rounded-2xl border p-6 backdrop-blur-xl transition-all duration-700 ease-out cursor-pointer shadow-xl select-none ${
                 isCenter
                   ? 'border-primary/60 bg-card/90 shadow-primary/10 z-30 ring-1 ring-primary/30'
                   : 'border-border/40 bg-card/40 z-10 hover:border-border/80'

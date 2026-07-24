@@ -139,9 +139,6 @@ export default function Home() {
           eyebrow="Stack & Workflows"
           title="Tools & AI Agent Architectures"
         />
-        <p className="text-muted-foreground text-sm max-w-xl mb-6 font-sans">
-          Click or step through the 3D circular gallery below to explore my primary development tools, frameworks, and autonomous AI agent workflows.
-        </p>
 
         <CircularGallery
           items={[
