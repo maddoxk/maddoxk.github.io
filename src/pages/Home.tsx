@@ -27,15 +27,15 @@ export default function Home() {
   return (
     <>
       {/* Hero with Dither Background & Transition */}
-      <section className="min-h-[85vh] flex flex-col justify-between px-6 max-w-5xl mx-auto pt-16 pb-8 relative overflow-hidden">
-        {/* ReactBits Dither Canvas */}
-        <DitherBackground className="opacity-60" />
+      <section className="min-h-[85vh] flex flex-col justify-between px-6 max-w-5xl mx-auto pt-16 pb-8 relative">
+        {/* Full-width fixed/absolute Dither Canvas */}
+        <div className="absolute inset-y-0 left-[calc(-50vw+50%)] right-[calc(-50vw+50%)] overflow-hidden pointer-events-none z-0">
+          <DitherBackground className="opacity-25" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent" />
+        </div>
         
         {/* Particles Overlay */}
         <Particles particleCount={25} speed={0.3} />
-
-        {/* Smooth Transition Gradient to Normal Page Background */}
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none z-10" />
 
         <div className="my-auto relative z-20">
           <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-4 block">

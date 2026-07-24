@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 export interface CircularGalleryItem {
   title: string
@@ -10,11 +10,27 @@ export interface CircularGalleryItem {
 
 interface CircularGalleryProps {
   items: CircularGalleryItem[]
+  autoCycleInterval?: number // ms, default 3500ms
   className?: string
 }
 
-export default function CircularGallery({ items, className = '' }: CircularGalleryProps) {
+export default function CircularGallery({
+  items,
+  autoCycleInterval = 3500,
+  className = '',
+}: CircularGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+
+  // Auto cycle effect
+  useEffect(() => {
+    if (isPaused) return
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % items.length)
+    }, autoCycleInterval)
+
+    return () => clearInterval(timer)
+  }, [items.length, autoCycleInterval, isPaused])
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % items.length)
@@ -25,12 +41,15 @@ export default function CircularGallery({ items, className = '' }: CircularGalle
   }
 
   return (
-    <div className={`relative w-full max-w-4xl mx-auto py-10 px-4 ${className}`}>
-      {/* Outer 3D circular arc layout */}
-      <div className="relative min-h-[380px] flex items-center justify-center overflow-hidden">
+    <div
+      className={`relative w-full max-w-5xl mx-auto py-12 px-4 ${className}`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* 3D Circular Arc Viewport */}
+      <div className="relative h-[440px] flex items-center justify-center overflow-visible">
         {items.map((item, index) => {
           const total = items.length
-          // Offset relative to active index
           let offset = index - activeIndex
           if (offset > total / 2) offset -= total
           if (offset < -total / 2) offset += total
@@ -38,21 +57,25 @@ export default function CircularGallery({ items, className = '' }: CircularGalle
           const isCenter = offset === 0
           const absOffset = Math.abs(offset)
 
-          // Calculate 3D circular transformation
-          const rotateY = offset * 28 // degrees
-          const translateX = offset * 220 // pixels
-          const translateZ = -absOffset * 140 // depth
-          const scale = isCenter ? 1 : Math.max(0.7, 1 - absOffset * 0.15)
-          const opacity = isCenter ? 1 : Math.max(0.2, 0.7 - absOffset * 0.25)
+          // Enhanced 3D circular arc layout math
+          const angle = (offset / total) * Math.PI * 1.5 // Arc curve spread
+          const radius = 320 // 3D ring radius in px
+
+          const translateX = Math.sin(angle) * radius
+          const translateZ = Math.cos(angle) * radius - radius // Depth recession
+          const rotateY = (angle * 180) / Math.PI // Facing direction along ring
+
+          const scale = isCenter ? 1.05 : Math.max(0.72, 1 - absOffset * 0.12)
+          const opacity = isCenter ? 1 : Math.max(0.3, 0.85 - absOffset * 0.25)
 
           return (
             <div
               key={item.title}
               onClick={() => setActiveIndex(index)}
-              className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-80 rounded-2xl border p-6 backdrop-blur-xl transition-all duration-700 ease-out cursor-pointer shadow-xl select-none ${
+              className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-84 rounded-2xl border p-6 backdrop-blur-xl transition-all duration-700 ease-out cursor-pointer shadow-xl select-none ${
                 isCenter
-                  ? 'border-primary/50 bg-card/80 shadow-primary/10 z-30'
-                  : 'border-border/40 bg-card/30 z-10 hover:border-border/80'
+                  ? 'border-primary/60 bg-card/90 shadow-primary/10 z-30 ring-1 ring-primary/30'
+                  : 'border-border/40 bg-card/40 z-10 hover:border-border/80'
               }`}
               style={{
                 transform: `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
@@ -61,7 +84,7 @@ export default function CircularGallery({ items, className = '' }: CircularGalle
             >
               <div className="flex items-center justify-between gap-3 mb-4">
                 <span className="text-3xl">{item.icon}</span>
-                <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest border border-border/40 rounded px-2 py-0.5">
+                <span className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest border border-border/40 rounded px-2.5 py-0.5 bg-background/50">
                   {item.category}
                 </span>
               </div>
@@ -83,7 +106,7 @@ export default function CircularGallery({ items, className = '' }: CircularGalle
       </div>
 
       {/* Gallery Controls & Counter */}
-      <div className="flex items-center justify-center gap-6 mt-6 relative z-40">
+      <div className="flex items-center justify-center gap-6 mt-4 relative z-40">
         <button
           onClick={handlePrev}
           className="p-2.5 rounded-full border border-border/50 bg-card/60 text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all font-mono text-sm cursor-pointer"
@@ -91,8 +114,10 @@ export default function CircularGallery({ items, className = '' }: CircularGalle
         >
           ←
         </button>
-        <div className="font-mono text-xs text-muted-foreground tracking-widest">
-          {String(activeIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
+        <div className="font-mono text-xs text-muted-foreground tracking-widest flex items-center gap-2">
+          <span>{String(activeIndex + 1).padStart(2, '0')}</span>
+          <span className="opacity-40">/</span>
+          <span>{String(items.length).padStart(2, '0')}</span>
         </div>
         <button
           onClick={handleNext}
