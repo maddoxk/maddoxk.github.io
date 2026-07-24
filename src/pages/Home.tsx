@@ -134,58 +134,29 @@ export default function Home() {
       </section>
 
       {/* Tools & AI Workflows Circular Gallery */}
-      <section className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40 overflow-hidden">
+      <section className="px-6 max-w-5xl mx-auto py-16 border-t border-border/40 overflow-hidden">
         <SectionHeading
           eyebrow="Stack & Workflows"
           title="Tools & AI Agent Architectures"
         />
 
-        <CircularGallery
-          items={[
-            {
-              title: 'React & Vite',
-              category: 'Frontend Core',
-              description: 'Fast modern component architectures with TypeScript, Tailwind CSS v4, and Shadcn UI design systems.',
-              icon: '⚡',
-              tags: ['React 18', 'Vite', 'TypeScript', 'Tailwind'],
-            },
-            {
-              title: 'Autonomous AI Agents',
-              category: 'AI Workflow',
-              description: 'Multi-agent orchestration using specialized subagents, background task loops, and tool calling.',
-              icon: '🤖',
-              tags: ['Agentic Coding', 'Subagents', 'Task Execution'],
-            },
-            {
-              title: 'Transformers.js & RAG',
-              category: 'Client-side AI',
-              description: 'In-browser vector embeddings (all-MiniLM-L6-v2) and top-K cosine similarity retrieval over local corpora.',
-              icon: '🧠',
-              tags: ['ONNX Runtime', 'Vector Search', 'RAG'],
-            },
-            {
-              title: 'Go & Microservices',
-              category: 'Backend Systems',
-              description: 'Double-entry payment ledgers, high-concurrency HTTP API gateways, and distributed rate limiters.',
-              icon: '🐹',
-              tags: ['Go 1.25', 'SQLite', 'Double-Entry', 'ISO-20022'],
-            },
-            {
-              title: 'Rust & Tokio',
-              category: 'Systems & Async',
-              description: 'Distributed job queue engines, Tokio async worker pools, atomic database leases, and DLQ handling.',
-              icon: '⚙️',
-              tags: ['Rust', 'Tokio', 'Axum', 'Async Workers'],
-            },
-            {
-              title: 'Python ML & Backtesting',
-              category: 'Quant & Data',
-              description: 'Vectorized equity backtest engines, ARIMA/LSTM time-series forecasting, and stats-arbitrage research.',
-              icon: '🐍',
-              tags: ['Python', 'Pandas', 'NumPy', 'Scikit-Learn'],
-            },
-          ]}
-        />
+        <div className="h-[480px] sm:h-[540px] relative my-6 w-full rounded-2xl border border-border/40 bg-card/30 backdrop-blur-md overflow-hidden">
+          <CircularGallery
+            bend={3}
+            textColor="#e2e8f0"
+            borderRadius={0.06}
+            scrollSpeed={2}
+            scrollEase={0.05}
+            items={[
+              { image: '/images/fullstack_ai_rag_chat.jpg', text: 'React & Vite UI' },
+              { image: '/images/search_algorithms.jpg', text: 'Autonomous AI Agents' },
+              { image: '/images/fullstack_ai_rag_chat.jpg', text: 'Transformers.js RAG' },
+              { image: '/images/backend_job_queue.jpg', text: 'Go Ledgers & APIs' },
+              { image: '/images/backend_job_queue.jpg', text: 'Rust Tokio Worker Queue' },
+              { image: '/images/search_algorithms.jpg', text: 'Python ML Backtester' },
+            ]}
+          />
+        </div>
       </section>
 
       {/* Tech Stack */}
