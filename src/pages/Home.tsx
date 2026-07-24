@@ -5,7 +5,7 @@ import BlurText from '@/components/reactbits/BlurText'
 import ShinyText from '@/components/reactbits/ShinyText'
 import SpotlightCard from '@/components/reactbits/SpotlightCard'
 import Particles from '@/components/reactbits/Particles'
-import TrueFocus from '@/components/reactbits/TrueFocus'
+import VariableProximity from '@/components/reactbits/VariableProximity'
 import CircularGallery from '@/components/reactbits/CircularGallery'
 import DitherBackground from '@/components/reactbits/DitherBackground'
 import LogoLoop from '@/components/reactbits/LogoLoop'
@@ -14,6 +14,7 @@ import { Github, Mail, ArrowRight, User, Briefcase, ChevronDown } from 'lucide-r
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Link } from 'react-router-dom'
+import { useRef } from 'react'
 
 const TECH_LOGOS = [
   { name: 'TypeScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
@@ -33,6 +34,8 @@ const TECH_LOGOS = [
 ]
 
 export default function Home() {
+  const headingContainerRef = useRef<HTMLDivElement>(null)
+
   const scrollToContent = () => {
     const el = document.getElementById('background-section')
     if (el) {
@@ -95,12 +98,19 @@ export default function Home() {
 
       {/* About Preview */}
       <section id="background-section" className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
-        <div className="mb-8">
+        <div ref={headingContainerRef} className="mb-8 relative cursor-pointer">
           <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-2">
             Background
           </span>
           <h2 className="text-3xl font-bold text-foreground">
-            <TrueFocus sentence="Engineering with Intention" blurAmount={3} />
+            <VariableProximity
+              label="Engineering with Intention"
+              fromFontVariationSettings="'wght' 400, 'opsz' 9"
+              toFontVariationSettings="'wght' 1000, 'opsz' 40"
+              containerRef={headingContainerRef}
+              radius={100}
+              falloff="linear"
+            />
           </h2>
         </div>
         <SpotlightCard className="overflow-hidden">
