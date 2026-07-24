@@ -7,6 +7,7 @@ import SpotlightCard from '@/components/reactbits/SpotlightCard'
 import Particles from '@/components/reactbits/Particles'
 import TrueFocus from '@/components/reactbits/TrueFocus'
 import CircularGallery from '@/components/reactbits/CircularGallery'
+import DitherBackground from '@/components/reactbits/DitherBackground'
 import { PROJECTS } from '@/data/projects'
 import { SKILLS } from '@/data/skills'
 import { Github, Mail, ArrowRight, Code2, User, Briefcase, ChevronDown } from 'lucide-react'
@@ -25,11 +26,18 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero with Dither Background & Transition */}
       <section className="min-h-[85vh] flex flex-col justify-between px-6 max-w-5xl mx-auto pt-16 pb-8 relative overflow-hidden">
-        <Particles particleCount={35} speed={0.4} />
+        {/* ReactBits Dither Canvas */}
+        <DitherBackground className="opacity-60" />
+        
+        {/* Particles Overlay */}
+        <Particles particleCount={25} speed={0.3} />
 
-        <div className="my-auto relative z-10">
+        {/* Smooth Transition Gradient to Normal Page Background */}
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none z-10" />
+
+        <div className="my-auto relative z-20">
           <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-4 block">
             <ShinyText text="Software Engineer & Problem Solver" speed={4} />
           </span>
@@ -58,7 +66,7 @@ export default function Home() {
         </div>
 
         {/* Animated Floating Scroll Down Arrow */}
-        <div className="flex justify-center pt-8 relative z-10">
+        <div className="flex justify-center pt-8 relative z-20">
           <button
             onClick={scrollToContent}
             aria-label="Scroll to content"
