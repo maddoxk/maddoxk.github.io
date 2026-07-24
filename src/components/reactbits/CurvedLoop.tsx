@@ -4,31 +4,60 @@ interface CurvedLoopProps {
   marqueeText?: string
   speed?: number
   curveAmount?: number
-  direction?: 'left' | 'right'
   interactive?: boolean
   className?: string
 }
 
 export default function CurvedLoop({
-  marqueeText = 'MADDOX KRAPE • SOFTWARE ENGINEER • COMPUTER SCIENCE • ALGORITHMS & SIMULATION ENGINE • AI AGENTS • ',
-  speed = 1.2,
-  curveAmount = 180,
-  direction = 'left',
+  marqueeText = 'MADDOX KRAPE • COMPUTER SCIENCE • ALGORITHMS & SIMULATIONS • AI AGENTS • ',
+  speed = 1.0,
+  curveAmount = 140,
   interactive = true,
   className = '',
 }: CurvedLoopProps) {
   const [offset, setOffset] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
+  const textPathRef = useRef<SVGTextPathElement>(null)
+  const singleTextLengthRef = useRef<number>(1000)
+
   const startXRef = useRef(0)
   const startOffsetRef = useRef(0)
 
+  // Measure single text block length for seamless modulo wrapping
   useEffect(() => {
-    if (isDragging) return
-    const interval = setInterval(() => {
-      setOffset((prev) => (direction === 'left' ? prev + speed * 1.5 : prev - speed * 1.5))
-    }, 16)
-    return () => clearInterval(interval)
-  }, [speed, direction, isDragging])
+    if (textPathRef.current) {
+      try {
+        const totalLen = textPathRef.current.getComputedTextLength()
+        if (totalLen > 0) {
+          singleTextLengthRef.current = totalLen / 8 // Divided by 8 repeated blocks
+        }
+      } catch (e) {
+        // Fallback
+      }
+    }
+  }, [marqueeText])
+
+  // RequestAnimationFrame for 60fps buttery smooth animation & seamless loop wrap
+  useEffect(() => {
+    let animId: number
+
+    const step = () => {
+      if (!isDragging) {
+        setOffset((prev) => {
+          const next = prev - speed * 0.8
+          const chunkLen = singleTextLengthRef.current
+          if (chunkLen > 0 && Math.abs(next) >= chunkLen) {
+            return next % chunkLen // Modulo wrapping guarantees infinite non-disappearing loop
+          }
+          return next
+        })
+      }
+      animId = requestAnimationFrame(step)
+    }
+
+    animId = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(animId)
+  }, [speed, isDragging])
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!interactive) return
@@ -40,15 +69,15 @@ export default function CurvedLoop({
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isDragging || !interactive) return
     const delta = e.clientX - startXRef.current
-    setOffset(startOffsetRef.current + delta * 2)
+    setOffset(startOffsetRef.current + delta * 1.5)
   }
 
   const handleMouseUp = () => {
     setIsDragging(false)
   }
 
-  // Create repeated text for infinite loop
-  const repeatedText = `${marqueeText} ${marqueeText} ${marqueeText} ${marqueeText}`
+  // 8 repeats guarantees full path coverage with no gap gaps
+  const repeatedText = Array(8).fill(marqueeText).join(' ')
 
   return (
     <div
@@ -60,16 +89,17 @@ export default function CurvedLoop({
     >
       <svg
         viewBox="0 0 1400 240"
-        className="w-full h-auto overflow-visible opacity-30 hover:opacity-80 transition-opacity duration-500"
+        className="w-full h-auto overflow-visible opacity-35 hover:opacity-80 transition-opacity duration-500"
       >
         <path
           id="curved-path-span"
-          d={`M -100 120 C 350 ${120 - curveAmount}, 1050 ${120 + curveAmount}, 1500 120`}
+          d={`M -200 120 C 300 ${120 - curveAmount}, 1100 ${120 + curveAmount}, 1600 120`}
           fill="transparent"
           stroke="transparent"
         />
-        <text className="font-mono text-xs uppercase tracking-[0.3em] fill-foreground font-semibold">
+        <text className="font-mono text-xs uppercase tracking-[0.25em] fill-foreground font-semibold">
           <textPath
+            ref={textPathRef}
             href="#curved-path-span"
             startOffset={`${offset}px`}
           >
