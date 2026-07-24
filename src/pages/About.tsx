@@ -1,84 +1,104 @@
 import SectionHeading from '@/components/ui/SectionHeading'
-import StatsHUD from '@/components/ui/StatsHUD'
-import NeonButton from '@/components/ui/NeonButton'
-import GlitchText from '@/components/fx/GlitchText'
+import ExperienceSection from '@/components/ui/ExperienceSection'
+import { Card, CardContent } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+import { ArrowRight, Trophy, BookOpen, Rocket, Terminal, Users } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const TIMELINE = [
-  { year: '7+ yrs ago', title: 'First lines of code', body: 'Started tinkering and never stopped.' },
-  { year: 'High school', title: 'AP Computer Science A', body: 'Earned a perfect 5/5 on the exam.' },
-  { year: 'Ongoing', title: 'Simulation & algorithms', body: 'Built gravity simulators, FSM-driven elevators, Huffman compressors, and hash table experiments.' },
-  { year: 'College', title: 'Pursuing a BS in Computer Science', body: 'Currently enrolled and deepening my foundations across systems, theory, and software engineering.' },
-  { year: 'Now', title: 'Exploring the web in 3D', body: 'Learning new technologies and bringing cyberpunk aesthetics and real-time 3D to the browser.' },
+  { year: '7+ yrs ago', title: 'First lines of code', body: 'Started tinkering with programming languages, problem solving, and building basic programs.', icon: Terminal },
+  { year: 'College', title: 'Pursuing BS in Computer Science at DU', body: 'Enrolled as a Junior CS major at the University of Denver, deepening theoretical and practical foundations across algorithms, data structures, and software architecture.', icon: BookOpen },
+  { year: 'Leadership', title: 'Treasurer at DU AI Club', body: 'Serving as Treasurer for the DU Artificial Intelligence Club, managing finances, organizing workshops, and supporting AI learning initiatives for students across campus.', icon: Users },
+  { year: 'Projects', title: 'Simulation & algorithms', body: 'Built gravity simulators, FSM-driven elevators, Huffman compression engines, hash table experiments, and distributed task queues.', icon: Rocket },
+  { year: 'Now', title: 'Modern Web & Systems Engineering', body: 'Exploring full-stack technologies, clean UI design systems, interactive web graphics, and high performance web applications.', icon: Trophy },
 ]
 
 export default function About() {
   return (
-    <div className="px-6 max-w-5xl mx-auto py-16">
-      <div className="font-mono text-xs tracking-widest text-cyan-neon mb-4">
-        &gt; IDENTITY.file
-      </div>
-      <h1 className="font-display text-4xl md:text-6xl mb-10">
-        <GlitchText text="ABOUT ME" as="span" />
+    <div className="px-6 max-w-5xl mx-auto py-16 pt-20">
+      <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-3">
+        Developer Profile
+      </span>
+      <h1 className="font-sans font-bold text-4xl sm:text-5xl tracking-tight text-foreground mb-10">
+        About Me
       </h1>
 
-      <section className="grid md:grid-cols-[240px_1fr] gap-10 items-start mb-20">
-        <img
-          src="/images/profile.jpeg"
-          alt="Maddox Krape"
-          className="w-60 h-60 object-cover cyber-border"
-          style={{ borderColor: 'var(--neon-cyan)' }}
-        />
-        <div className="space-y-4 text-lg">
-          <p>
-            I'm a developer and problem solver with a passion for creating solutions. I have
-            years of experience in software engineering and have worked on a variety of projects.
-          </p>
-          <p className="text-muted">
-            I love to brainstorm and solve complex problems, and I have a knack for finding
-            innovative solutions. I am constantly looking for new challenges and am always on
-            the lookout for interesting opportunities.
-          </p>
-          <p className="text-muted">
-            My projects span simulation (gravity, elevators), classic algorithms (Huffman
-            compression, hash tables, search), and data visualization (COVID-19 dashboards).
-            When I'm not coding, I play chess (1600+ ELO and climbing).
-          </p>
-        </div>
-      </section>
-
-      <section className="mb-20">
-        <SectionHeading eyebrow="ACHIEVEMENTS.log" title="By The Numbers" />
-        <StatsHUD />
-      </section>
-
-      <section className="mb-20">
-        <SectionHeading eyebrow="TIMELINE.log" title="Journey" />
-        <ol className="relative border-l border-[var(--border-panel)] pl-8 space-y-8">
-          {TIMELINE.map((t, i) => (
-            <li key={i} className="relative">
-              <div
-                className="absolute -left-10 top-1 w-3 h-3 rounded-full"
-                style={{ background: 'var(--neon-cyan)', boxShadow: 'var(--glow-cyan-sm)' }}
+      <section className="mb-16">
+        <Card className="bg-card/40 border-border/50 backdrop-blur-md overflow-hidden">
+          <CardContent className="p-8 md:p-10 grid md:grid-cols-[240px_1fr] gap-10 items-start">
+            <div className="relative group mx-auto md:mx-0">
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary to-accent opacity-30 group-hover:opacity-75 blur-md transition duration-500" />
+              <img
+                src="/images/profile.jpeg"
+                alt="Maddox Krape"
+                className="relative w-60 h-60 rounded-xl object-cover border border-border shadow-xl"
               />
-              <div className="font-mono text-xs tracking-widest text-cyan-neon mb-1">
-                &gt; {t.year}
-              </div>
-              <h3 className="font-display text-xl mb-2">{t.title}</h3>
-              <p className="text-muted">{t.body}</p>
-            </li>
-          ))}
-        </ol>
+            </div>
+            <div className="space-y-4 text-base sm:text-lg leading-relaxed text-muted-foreground">
+              <p className="text-foreground font-medium">
+                I'm a Junior Computer Science major pursuing a B.S. at the University of Denver (DU), actively involved as Treasurer for the DU AI Club.
+              </p>
+              <p>
+                My background spans distributed backend systems, simulation engines (gravity, elevators), fundamental data structures & algorithms 
+                (Huffman compression, hash tables, pathfinding visualizers), and client-side RAG search engines.
+              </p>
+              <p>
+                When I'm not writing software, I compete in chess (1600+ ELO rating and growing), study system architecture, 
+                and experiment with emerging web standards.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      <section className="mb-16">
+        <SectionHeading eyebrow="Experience & Education" title="Key Highlights" />
+        <ExperienceSection />
+      </section>
+
+      <section className="mb-16">
+        <SectionHeading eyebrow="Chronology" title="Interactive Journey" />
+        <Card className="bg-card/40 border-border/50 backdrop-blur-md p-6 sm:p-8">
+          <Accordion className="w-full">
+            {TIMELINE.map((t, i) => {
+              const Icon = t.icon
+              return (
+                <AccordionItem key={i} value={`item-${i}`} className="border-border/40">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <div className="flex items-center gap-3 text-left">
+                      <div className="p-2 rounded-lg bg-primary/10 text-primary border border-primary/20">
+                        <Icon className="w-4 h-4" />
+                      </div>
+                      <div>
+                        <div className="font-mono text-xs text-primary uppercase tracking-wider">{t.year}</div>
+                        <div className="font-sans font-semibold text-lg text-foreground">{t.title}</div>
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="pl-12 text-muted-foreground text-base">
+                    {t.body}
+                  </AccordionContent>
+                </AccordionItem>
+              )
+            })}
+          </Accordion>
+        </Card>
       </section>
 
       <section>
-        <SectionHeading eyebrow="NOW.sys" title="What I'm Working On" />
-        <div className="panel cyber-border p-6">
-          <p className="text-lg mb-4">
-            Currently focused on this cyberpunk portfolio rebuild: Three.js shaders, AI behaviors
-            (see the lightcycles behind this text), and modern React patterns.
+        <Card className="bg-card/50 border-border/50 backdrop-blur-md p-8 relative overflow-hidden">
+          <SectionHeading eyebrow="Current Focus" title="What I'm Working On" />
+          <p className="text-muted-foreground text-lg mb-6">
+            Currently focused on refining interactive web engineering, building rich UI design systems with Shadcn & Tailwind CSS, 
+            and exploring high-performance web solutions.
           </p>
-          <NeonButton to="/projects">&gt; BROWSE_PROJECTS</NeonButton>
-        </div>
+          <Button asChild size="lg" className="gap-2">
+            <Link to="/projects">
+              Browse Projects <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Button>
+        </Card>
       </section>
     </div>
   )

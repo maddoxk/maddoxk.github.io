@@ -1,11 +1,10 @@
 import Router from './router'
-import BootSequence from './components/fx/BootSequence'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 export default function App() {
   return (
-    <>
-      <BootSequence />
+    <TooltipProvider>
       <Router />
-    </>
+    </TooltipProvider>
   )
 }

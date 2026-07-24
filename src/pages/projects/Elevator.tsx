@@ -1,71 +1,56 @@
 import ProjectHero from '@/components/project/ProjectHero'
 import MediaEmbed from '@/components/project/MediaEmbed'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 
 export default function Elevator() {
   return (
     <>
       <ProjectHero
-        eyebrow="SIMULATION // A.D.E.N"
-        title="ELEVATOR SIMULATION"
-        subtitle="Implementing finite state machines and collaborative programming."
+        eyebrow="System Simulation"
+        title="Elevator Finite State Machine"
+        subtitle="Implementing time-driven and event-driven finite state machines."
       />
-      <article className="px-6 max-w-4xl mx-auto py-12">
-        <h2 className="font-display text-2xl text-cyan-neon mt-10 mb-4">Introduction</h2>
-        <p className="text-lg mb-4">
-          Elevator Simulation is a group project from the course A.D.E.N. (Advanced Data Structures,
-          Embedded Systems, and Networking). It's a time-driven and event-driven simulation. The
-          elevator's functionality is modeled using a finite state machine, and passengers arrive at
-          specified times with intended destinations — just like they would in a real building.
+      <article className="px-6 max-w-4xl mx-auto py-12 text-muted-foreground leading-relaxed">
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Overview</h2>
+        <p className="text-lg text-foreground/90 mb-6">
+          Elevator Simulation models real-world passenger arrivals, floor requests, and dispatching logic in a multi-story building environment using a deterministic Finite State Machine (FSM).
         </p>
 
-        <h2 className="font-display text-2xl text-cyan-neon mt-12 mb-4">Programming Deep-Dive</h2>
-        <p className="mb-4">
-          An elevator is a finite state machine — no randomness, fixed number of states.
-        </p>
-        <blockquote className="panel cyber-border p-6 my-6 italic text-muted" style={{ borderColor: 'var(--neon-magenta)' }}>
-          "Finite-state machine (FSM), or finite-state automaton, is a mathematical model of
-          computation. It is an abstract machine that can be in exactly one of a finite number of
-          states at any given time."
-          <footer className="text-xs mt-3 not-italic">— wikipedia.com</footer>
+        <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">Finite State Architecture</h2>
+        <blockquote className="border-l-2 border-primary/40 pl-4 py-2 my-6 italic text-muted-foreground bg-muted/20 rounded-r-md">
+          "A finite-state machine (FSM) is an abstract model of computation that can exist in exactly one of a finite number of states at any given time."
         </blockquote>
-        <p className="mb-6">Here is the FSM diagram for the elevator simulation:</p>
         <MediaEmbed src="/images/elevatorfsm-removebg-preview.png" alt="Elevator FSM diagram" />
 
-        <h3 className="font-display text-xl text-magenta-neon mt-10 mb-3">States</h3>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 mb-8">
+        <h3 className="text-xl font-bold text-foreground mt-10 mb-4">Core States</h3>
+        <div className="flex flex-wrap gap-2 mb-8">
           {['STOP', 'BOARD', 'OFFLOAD', 'OPENDOOR', 'CLOSEDOOR', 'MOVE_1_FLOOR'].map(s => (
-            <div key={s} className="panel p-3 text-center font-mono text-sm text-cyan-neon border border-[var(--border-panel)]">
+            <Badge key={s} variant="secondary" className="font-mono text-xs px-3 py-1">
               {s}
-            </div>
+            </Badge>
           ))}
         </div>
 
-        <h3 className="font-display text-xl text-magenta-neon mt-10 mb-3">Each Tick Has 3 Phases</h3>
-        <ol className="space-y-3 mb-6">
-          <li>&gt; Check for the arrival of new passengers</li>
-          <li>&gt; Execute the state and determine the next state</li>
-          <li>&gt; Update the GUI if there are changes</li>
+        <h3 className="text-xl font-bold text-foreground mt-10 mb-4">Simulation Timestep Cycle</h3>
+        <ol className="list-decimal list-inside space-y-2 mb-8">
+          <li>Check scheduled passenger arrival queue at current timestamp</li>
+          <li>Execute current elevator state action & resolve transition criteria</li>
+          <li>Update visualization layer with new position & state indicators</li>
         </ol>
-        <p className="text-muted mb-6">
-          Executing the state has 2 sub-phases: (1) performing state actions — actions occur in the
-          Elevator, Floor, and Building classes; (2) determining the next state — requires
-          information from the Elevator, CallManager, and Building classes. We recommend building a
-          document for each state that defines the action(s) and where they take place, plus the
-          decision criteria for each possible next state and where it comes from.
-        </p>
 
-        <h3 className="font-display text-xl text-magenta-neon mt-10 mb-3">Design Stages</h3>
-        <div className="grid md:grid-cols-3 gap-4">
+        <h3 className="text-xl font-bold text-foreground mt-10 mb-4">Design Artifacts</h3>
+        <div className="grid md:grid-cols-3 gap-4 mb-8">
           <MediaEmbed src="/images/holyC - Elevator Simulation Design Document, v1.pdf" type="pdf" />
           <MediaEmbed src="/images/holyC - Elevator Simulation Design Document, v2.pdf" type="pdf" />
           <MediaEmbed src="/images/holyC - Elevator Simulation Design Document, v3 (1).pdf" type="pdf" />
         </div>
 
-        <h3 className="font-display text-xl text-magenta-neon mt-10 mb-3">Analysis</h3>
-        <MediaEmbed src="/images/holyC - Elevator Analysis.pdf" type="pdf" />
-
-        <h3 className="font-display text-xl text-magenta-neon mt-10 mb-3">4K Timelapse</h3>
-        <MediaEmbed src="/videos/4k_elevator_timelapse.mp4" type="video" caption="Note: file path contains spaces — served from public/videos/." />
+        <h3 className="text-xl font-bold text-foreground mt-10 mb-4">Analysis & Demonstration</h3>
+        <div className="space-y-6">
+          <MediaEmbed src="/images/holyC - Elevator Analysis.pdf" type="pdf" />
+          <MediaEmbed src="/videos/4k_elevator_timelapse.mp4" type="video" caption="Elevator simulation execution run." />
+        </div>
       </article>
     </>
   )

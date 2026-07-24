@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { STATS } from '@/data/stats'
 import { useInView } from '@/hooks/useInView'
+import { Card, CardContent } from '@/components/ui/card'
 
 function Counter({ value, duration = 1200 }: { value: number; duration?: number }) {
   const [n, setN] = useState(0)
@@ -22,28 +23,27 @@ function Counter({ value, duration = 1200 }: { value: number; duration?: number 
 export default function StatsHUD() {
   const { ref, inView } = useInView()
   return (
-    <div ref={ref} className="panel cyber-border p-6 font-mono text-sm">
-      <div className="text-xs text-cyan-neon tracking-widest mb-4">&gt; STATS.db</div>
-      <ul className="space-y-3">
-        {STATS.map(s => (
-          <li key={s.label} className="grid grid-cols-[160px_1fr_auto] gap-4 items-center">
-            <span className="text-muted">&gt; {s.label}</span>
-            <div className="h-2 bg-deep overflow-hidden relative">
-              <div
-                className="h-full transition-[width] duration-1000 ease-out"
-                style={{
-                  width: inView ? `${s.fill * 100}%` : '0%',
-                  background: 'linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta))',
-                  boxShadow: 'var(--glow-cyan-sm)',
-                }}
-              />
+    <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {STATS.map(s => (
+        <Card key={s.label} className="bg-card/40 border-border/50 backdrop-blur-md hover:border-primary/40 transition-colors">
+          <CardContent className="p-5 flex flex-col justify-between h-full">
+            <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">{s.label}</span>
+            <div className="mt-3">
+              <div className="text-3xl font-bold font-sans tracking-tight text-foreground tabular-nums">
+                {inView ? <Counter value={s.value} /> : '0'}<span className="text-primary">{s.suffix}</span>
+              </div>
+              <div className="h-1.5 w-full bg-muted/60 rounded-full overflow-hidden mt-3">
+                <div
+                  className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-1000 ease-out rounded-full"
+                  style={{
+                    width: inView ? `${s.fill * 100}%` : '0%',
+                  }}
+                />
+              </div>
             </div>
-            <span className="text-cyan-neon tabular-nums">
-              {inView ? <Counter value={s.value} /> : '0'}{s.suffix}
-            </span>
-          </li>
-        ))}
-      </ul>
+          </CardContent>
+        </Card>
+      ))}
     </div>
   )
 }

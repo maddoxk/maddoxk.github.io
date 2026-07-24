@@ -12,9 +12,12 @@ const Huffman = lazy(() => import('./pages/projects/Huffman'))
 const Hashes = lazy(() => import('./pages/projects/Hashes'))
 const Covid = lazy(() => import('./pages/projects/Covid'))
 const Search = lazy(() => import('./pages/projects/Search'))
+const FullstackAiRagChat = lazy(() => import('./pages/projects/FullstackAiRagChat'))
+const BackendJobQueue = lazy(() => import('./pages/projects/BackendJobQueue'))
+const FintechPaymentsLedger = lazy(() => import('./pages/projects/FintechPaymentsLedger'))
 
 function Fallback() {
-  return <div className="p-8 text-cyan-neon">&gt; LOADING...</div>
+  return <div className="p-8 font-mono text-sm text-muted-foreground">Loading...</div>
 }
 
 export default function Router() {
@@ -32,6 +35,9 @@ export default function Router() {
             <Route path="/projects/hashes" element={<Hashes />} />
             <Route path="/projects/covid" element={<Covid />} />
             <Route path="/projects/search" element={<Search />} />
+            <Route path="/projects/fullstack-ai-rag-chat" element={<FullstackAiRagChat />} />
+            <Route path="/projects/backend-job-queue" element={<BackendJobQueue />} />
+            <Route path="/projects/fintech-payments-ledger" element={<FintechPaymentsLedger />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

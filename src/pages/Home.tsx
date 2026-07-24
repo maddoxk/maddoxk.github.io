@@ -1,107 +1,150 @@
-import GlitchText from '@/components/fx/GlitchText'
-import CyclingTagline from '@/components/fx/CyclingTagline'
 import SectionHeading from '@/components/ui/SectionHeading'
-import NeonButton from '@/components/ui/NeonButton'
 import ProjectCard from '@/components/project/ProjectCard'
-import StatsHUD from '@/components/ui/StatsHUD'
+import ExperienceSection from '@/components/ui/ExperienceSection'
 import { PROJECTS } from '@/data/projects'
 import { SKILLS } from '@/data/skills'
-import { Github, Mail } from 'lucide-react'
+import { Github, Mail, ArrowRight, Code2, User, Briefcase, ChevronDown } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
+  const scrollToContent = () => {
+    const el = document.getElementById('background-section')
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <>
       {/* Hero */}
-      <section className="min-h-[85vh] flex flex-col justify-center px-6 max-w-7xl mx-auto">
-        <div className="font-mono text-xs tracking-widest text-cyan-neon mb-4">
-          &gt; INITIALIZING_IDENTITY
+      <section className="min-h-[85vh] flex flex-col justify-between px-6 max-w-5xl mx-auto pt-16 pb-8 relative">
+        <div className="my-auto">
+          <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-4 block">
+            Software Engineer & Problem Solver
+          </span>
+
+          <h1 className="font-sans font-bold text-4xl sm:text-6xl md:text-7xl tracking-tight text-foreground mb-6 leading-[1.08]">
+            Hi, I'm Maddox Krape.
+          </h1>
+
+          <p className="max-w-2xl text-muted-foreground text-lg sm:text-xl leading-relaxed mb-10 font-sans">
+            I build interactive 3D simulations, optimized algorithm engines, and data visualization tools. Focused on clarity, efficiency, and thoughtful design.
+          </p>
+
+          <div className="flex flex-wrap gap-3 items-center">
+            <Button size="lg" asChild className="gap-2">
+              <Link to="/projects">
+                View Selected Work <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
+
+            <Button size="lg" variant="outline" asChild className="gap-2">
+              <Link to="/about">
+                <User className="w-4 h-4" /> More About Me
+              </Link>
+            </Button>
+          </div>
         </div>
-        <h1 className="font-display text-5xl md:text-8xl mb-6" style={{ textShadow: 'var(--glow-cyan-md)' }}>
-          <GlitchText text="MADDOX KRAPE" as="span" />
-        </h1>
-        <div className="text-xl md:text-2xl mb-8">
-          &gt; ROLE: <CyclingTagline />
-        </div>
-        <p className="max-w-2xl text-muted text-lg mb-10">
-          Digital portfolio. Years of software engineering across simulation, algorithms,
-          and data visualization. Always looking for the next interesting problem.
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <NeonButton to="/projects">&gt; VIEW_PROJECTS</NeonButton>
-          <NeonButton to="/about" variant="magenta">&gt; ABOUT_ME</NeonButton>
+
+        {/* Animated Floating Scroll Down Arrow */}
+        <div className="flex justify-center pt-8">
+          <button
+            onClick={scrollToContent}
+            aria-label="Scroll to content"
+            className="p-3 rounded-full border border-border/50 bg-card/40 text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all duration-300 animate-bounce cursor-pointer group"
+          >
+            <ChevronDown className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          </button>
         </div>
       </section>
 
-      {/* About preview */}
-      <section className="px-6 max-w-7xl mx-auto py-24">
-        <SectionHeading eyebrow="PROFILE.dat" title="Who I Am" />
-        <div className="grid md:grid-cols-[auto_1fr] gap-8 items-start">
-          <div className="relative">
+      {/* About Preview */}
+      <section id="background-section" className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
+        <SectionHeading eyebrow="Background" title="Engineering with Intention" />
+        <Card className="bg-card/40 border-border/50 backdrop-blur-md overflow-hidden">
+          <CardContent className="p-8 md:p-10 grid md:grid-cols-[auto_1fr] gap-8 items-center">
             <img
               src="/images/profile.jpeg"
               alt="Maddox Krape"
-              className="w-48 h-48 object-cover cyber-border"
-              style={{ borderColor: 'var(--neon-cyan)' }}
+              className="w-40 h-40 rounded-lg object-cover border border-border shadow-sm mx-auto md:mx-0"
             />
-          </div>
-          <div>
-            <p className="text-lg mb-4">
-              Hey — I'm a developer and problem solver with a passion for creating solutions.
-              Years of experience in software engineering across a variety of projects.
-            </p>
-            <p className="text-muted mb-6">
-              I love brainstorming and solving complex problems, and I have a knack for finding
-              innovative solutions. Constantly looking for new challenges and interesting opportunities.
-            </p>
-            <NeonButton to="/about">&gt; READ_MORE</NeonButton>
-          </div>
+            <div>
+              <p className="text-foreground text-lg font-medium leading-relaxed mb-3">
+                Building reliable software requires a balance of analytical precision and thoughtful user experience.
+              </p>
+              <p className="text-muted-foreground text-base leading-relaxed mb-6">
+                Over the past several years, I've designed physics simulation engines, written compression and search algorithms, 
+                and created responsive analytics dashboards. I value code that is easy to reason about and built to last.
+              </p>
+              <Button variant="secondary" asChild className="gap-2">
+                <Link to="/about">
+                  Read Full Profile <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+
+      {/* Experience & Education */}
+      <section className="px-6 max-w-5xl mx-auto py-16 border-t border-border/40">
+        <SectionHeading eyebrow="Experience & Education" title="Key Highlights" />
+        <ExperienceSection />
+      </section>
+
+      {/* Featured Projects */}
+      <section className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+          <SectionHeading eyebrow="Selected Work" title="Featured Projects" />
+          <Button variant="outline" asChild className="w-fit gap-2">
+            <Link to="/projects">
+              All Projects <Briefcase className="w-4 h-4" />
+            </Link>
+          </Button>
         </div>
-      </section>
-
-      {/* Stats */}
-      <section className="px-6 max-w-7xl mx-auto py-16">
-        <SectionHeading eyebrow="ACHIEVEMENTS.log" title="Stats" />
-        <StatsHUD />
-      </section>
-
-      {/* Projects */}
-      <section className="px-6 max-w-7xl mx-auto py-24">
-        <SectionHeading eyebrow="PROJECTS.dir" title="Featured Work" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map(p => <ProjectCard key={p.slug} project={p} />)}
+          {PROJECTS.slice(0, 6).map(p => <ProjectCard key={p.slug} project={p} />)}
         </div>
       </section>
 
-      {/* Skills */}
-      <section className="px-6 max-w-7xl mx-auto py-24">
-        <SectionHeading eyebrow="STACK.sys" title="Tech Stack" />
-        <div className="flex flex-wrap gap-3">
+      {/* Tech Stack */}
+      <section className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
+        <SectionHeading eyebrow="Toolkit" title="Technologies & Skills" />
+        <div className="flex flex-wrap gap-2">
           {SKILLS.map(s => (
-            <span key={s.name} className="panel px-4 py-2 font-mono text-sm text-cyan-neon border border-[var(--border-panel)]">
+            <Badge key={s.name} variant="secondary" className="px-3 py-1 text-xs font-mono font-normal border border-border/50">
+              <Code2 className="w-3 h-3 mr-1.5 text-muted-foreground" />
               {s.name}
-            </span>
+            </Badge>
           ))}
         </div>
       </section>
 
-      {/* Contact */}
-      <section id="contact" className="px-6 max-w-7xl mx-auto py-24">
-        <SectionHeading eyebrow="ESTABLISH_CONNECTION" title="Contact" />
-        <div className="panel cyber-border p-8">
-          <p className="text-lg mb-6">
-            Want to work together, ask a question, or just say hi? Reach out.
+      {/* Contact Section */}
+      <section id="contact" className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
+        <Card className="bg-card/40 border-border/50 backdrop-blur-md p-8 md:p-12 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground mb-4">
+            Get in touch
+          </h2>
+          <p className="text-muted-foreground text-base max-w-md mx-auto mb-8">
+            Whether you'd like to collaborate on a project or simply connect, my inbox is always open.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <a href="https://github.com/maddoxk" target="_blank" rel="noreferrer"
-               className="flex items-center gap-2 text-cyan-neon hover:glow-cyan transition-all">
-              <Github size={18} /> github.com/maddoxk
-            </a>
-            <a href="mailto:maddox.krape@gmail.com"
-               className="flex items-center gap-2 text-cyan-neon hover:glow-cyan transition-all">
-              <Mail size={18} /> maddox.krape@gmail.com
-            </a>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button size="lg" asChild className="gap-2">
+              <a href="mailto:maddox.krape@gmail.com">
+                <Mail className="w-4 h-4" /> maddox.krape@gmail.com
+              </a>
+            </Button>
+            <Button size="lg" variant="outline" asChild className="gap-2">
+              <a href="https://github.com/maddoxk" target="_blank" rel="noreferrer">
+                <Github className="w-4 h-4" /> GitHub
+              </a>
+            </Button>
           </div>
-        </div>
+        </Card>
       </section>
     </>
   )

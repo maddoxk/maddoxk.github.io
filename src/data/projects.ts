@@ -8,6 +8,7 @@ export type Project = {
   thumb: string
   href: string
   accent: 'cyan' | 'magenta' | 'violet' | 'amber'
+  tags?: string[]
 }
 
 export const PROJECTS: Project[] = [
@@ -19,6 +20,7 @@ export const PROJECTS: Project[] = [
     thumb: '/images/gravsim.jpg',
     href: '/projects/gravity',
     accent: 'cyan',
+    tags: ['Physics', '3D Engine', 'Java'],
   },
   {
     slug: 'elevator',
@@ -28,6 +30,7 @@ export const PROJECTS: Project[] = [
     thumb: '/images/elevatorfsm.jpg',
     href: '/projects/elevator',
     accent: 'magenta',
+    tags: ['FSM', 'Simulation', 'OOP'],
   },
   {
     slug: 'huffman',
@@ -37,6 +40,7 @@ export const PROJECTS: Project[] = [
     thumb: '/images/huffman-tree.png',
     href: '/projects/huffman',
     accent: 'violet',
+    tags: ['Compression', 'Binary Trees', 'Algorithms'],
   },
   {
     slug: 'hashes',
@@ -46,6 +50,7 @@ export const PROJECTS: Project[] = [
     thumb: '/images/hashes.jpg',
     href: '/projects/hashes',
     accent: 'amber',
+    tags: ['Data Structures', 'Performance', 'Hashing'],
   },
   {
     slug: 'covid',
@@ -55,14 +60,46 @@ export const PROJECTS: Project[] = [
     thumb: '/images/covid_graph.png',
     href: '/projects/covid',
     accent: 'cyan',
+    tags: ['Data Viz', 'Charts', 'API'],
   },
   {
     slug: 'search',
     title: 'Search Algorithms',
     tagline: 'Visualizations of classic search algorithms — transmission incoming.',
     category: 'algorithm',
-    thumb: '',
+    thumb: '/images/search.jpg',
     href: '/projects/search',
     accent: 'magenta',
+    tags: ['Graph Search', 'Pathfinding', 'Visualization'],
+  },
+  {
+    slug: 'fullstack-ai-rag-chat',
+    title: 'In-Browser RAG Engine',
+    tagline: 'Client-side Transformers.js embeddings with vector retrieval and cited AI responses.',
+    category: 'algorithm',
+    thumb: '/images/fullstack-ai-rag-chat.jpg',
+    href: '/projects/fullstack-ai-rag-chat',
+    accent: 'cyan',
+    tags: ['TypeScript', 'Transformers.js', 'RAG', 'Vector Search'],
+  },
+  {
+    slug: 'backend-job-queue',
+    title: 'Distributed Job Queue',
+    tagline: 'Durable distributed task queue & scheduler in Rust with tokio worker pool and SQLite WAL.',
+    category: 'algorithm',
+    thumb: '/images/backend-job-queue.jpg',
+    href: '/projects/backend-job-queue',
+    accent: 'amber',
+    tags: ['Rust', 'Tokio', 'SQLite', 'Axum', 'Async'],
+  },
+  {
+    slug: 'fintech-payments-ledger',
+    title: 'Double-Entry Payments Ledger',
+    tagline: 'High-precision double-entry financial ledger service in Go with idempotency & reconciliation.',
+    category: 'simulation',
+    thumb: '/images/fintech-payments-ledger.jpg',
+    href: '/projects/fintech-payments-ledger',
+    accent: 'violet',
+    tags: ['Go', 'Fintech', 'SQLite', 'ISO-20022', 'Ledger'],
   },
 ]

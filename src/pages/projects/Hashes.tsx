@@ -1,50 +1,49 @@
 import ProjectHero from '@/components/project/ProjectHero'
 import MediaEmbed from '@/components/project/MediaEmbed'
+import { Card, CardContent } from '@/components/ui/card'
 
 export default function Hashes() {
   return (
     <>
       <ProjectHero
-        eyebrow="ALGORITHM // COLLISION_RESOLUTION"
-        title="HASHES"
-        subtitle="Data structures and algorithms: probing, chaining, and cuckoo hashing."
+        eyebrow="Data Structures"
+        title="Hash Collision Resolution"
+        subtitle="Studying and benchmarking probing, chaining, and cuckoo hashing strategies."
       />
-      <article className="px-6 max-w-4xl mx-auto py-12">
-        <h2 className="font-display text-2xl text-cyan-neon mt-10 mb-4">Description</h2>
-        <p className="text-lg mb-4">
-          In this project, the objective was to study and implement various hashing algorithms to
-          efficiently store and retrieve data in a hash table. Hashing algorithms are widely used
-          in computer science to provide fast access to data by mapping keys to array indices.
+      <article className="px-6 max-w-4xl mx-auto py-12 text-muted-foreground leading-relaxed">
+        <h2 className="text-2xl font-bold text-foreground mt-8 mb-4">Overview</h2>
+        <p className="text-lg text-foreground/90 mb-6">
+          This project involved studying and benchmarking various hashing techniques to efficiently store and retrieve keys in constant time O(1) while resolving memory collisions.
         </p>
 
-        <h2 className="font-display text-2xl text-cyan-neon mt-12 mb-4">Hash Implementation</h2>
-        <p className="mb-4">
-          <b className="text-magenta-neon">Linear probing</b> is a technique where, if a collision
-          occurs (i.e., two keys hash to the same index), the algorithm searches for the next
-          available slot in the hash table sequentially. <b className="text-magenta-neon">Quadratic
-          probing</b> uses a quadratic function to determine the next available slot.
-        </p>
-        <p className="mb-4">
-          <b className="text-magenta-neon">Linked list hashing</b> handles collisions by creating a
-          linked list at each index of the hash table. If multiple keys hash to the same index,
-          they are stored as nodes in the linked list — a chain-like structure for collision
-          resolution.
-        </p>
-        <p className="mb-4">
-          <b className="text-magenta-neon">Cuckoo hashing</b> uses two separate hash functions to
-          compute two different indices for each key. If a collision occurs at one index, the key
-          is "kicked out" to its alternate index. This process continues until either an empty slot
-          is found or a maximum number of kicks is reached.
-        </p>
+        <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">Implemented Collision Strategies</h2>
+        <div className="grid md:grid-cols-2 gap-4 mb-8">
+          <Card className="bg-card/40 border-border/50">
+            <CardContent className="p-5">
+              <h4 className="font-semibold text-foreground mb-1">Linear & Quadratic Probing</h4>
+              <p className="text-sm text-muted-foreground">Sequentially or quadratically searches adjacent array slots upon collision to find available buckets.</p>
+            </CardContent>
+          </Card>
 
-        <h2 className="font-display text-2xl text-cyan-neon mt-12 mb-4">Reflection</h2>
-        <p className="mb-4">
-          This project taught me different hashing algorithms and their benefits. Understanding the
-          pros and cons of each helps with choosing one for a given application. Personally,
-          understanding how to avoid clustering was a challenge. I wonder what other hashing
-          algorithms are still undiscovered.
+          <Card className="bg-card/40 border-border/50">
+            <CardContent className="p-5">
+              <h4 className="font-semibold text-foreground mb-1">Chaining (Linked Lists)</h4>
+              <p className="text-sm text-muted-foreground">Stores colliding keys as linked list nodes at each bucket index, allowing unbounded capacity.</p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card/40 border-border/50 md:col-span-2">
+            <CardContent className="p-5">
+              <h4 className="font-semibold text-foreground mb-1">Cuckoo Hashing</h4>
+              <p className="text-sm text-muted-foreground">Uses dual hash functions and alternate key relocation ("kicking") to guarantee O(1) worst-case lookup performance.</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <h2 className="text-2xl font-bold text-foreground mt-10 mb-4">Analysis & Document</h2>
+        <p className="mb-6">
+          Exploring primary and secondary clustering revealed key tradeoffs in load factors, cache locality, and rehash penalties.
         </p>
-        <p className="mb-6">You can browse the full analysis here:</p>
         <MediaEmbed src="/images/ADEN-Hashes-Analysis.pdf" type="pdf" />
       </article>
     </>

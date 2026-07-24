@@ -1,30 +1,35 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Terminal, ArrowUpRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const links = [
-  { to: '/', label: 'HOME' },
-  { to: '/about', label: 'ABOUT' },
-  { to: '/projects', label: 'PROJECTS' },
-  { to: '/#contact', label: 'CONTACT' },
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/#contact', label: 'Contact' },
 ]
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 panel border-b border-t-0 border-l-0 border-r-0">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <NavLink to="/" className="font-display font-bold text-xl tracking-widest glow-cyan">
-          MADDOX_K
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/40">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <NavLink to="/" className="font-sans font-semibold text-lg tracking-tight text-foreground hover:opacity-80 transition-opacity">
+          Maddox Krape
         </NavLink>
-        <nav className="hidden md:flex gap-8 font-mono text-sm">
+
+        <nav className="hidden md:flex items-center gap-1 font-sans text-sm font-medium">
           {links.map(l => (
             <NavLink
               key={l.to}
               to={l.to}
               className={({ isActive }) =>
-                `relative py-1 transition-colors ${
-                  isActive ? 'text-cyan-neon glow-cyan' : 'text-fg hover:text-cyan-neon'
+                `px-4 py-2 rounded-md transition-all duration-200 ${
+                  isActive 
+                    ? 'text-primary bg-primary/10 font-semibold' 
+                    : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 }`
               }
             >
@@ -32,27 +37,39 @@ export default function Nav() {
             </NavLink>
           ))}
         </nav>
+
+        <div className="hidden md:flex items-center gap-3">
+          <Button variant="outline" size="sm" asChild className="gap-1.5 text-xs font-mono">
+            <a href="https://github.com/maddoxk" target="_blank" rel="noreferrer">
+              GitHub <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </Button>
+        </div>
+
         <button
-          className="md:hidden text-cyan-neon"
+          className="md:hidden p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
           onClick={() => setOpen(v => !v)}
           aria-label="Toggle menu"
         >
-          {open ? <X /> : <Menu />}
+          {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
+
       {open && (
-        <div className="md:hidden panel border-t border-[var(--border-panel)]">
-          <nav className="flex flex-col p-6 gap-4 font-mono">
+        <div className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/40 px-6 py-4">
+          <nav className="flex flex-col gap-2 font-sans font-medium">
             {links.map(l => (
               <NavLink
                 key={l.to}
                 to={l.to}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  isActive ? 'text-cyan-neon glow-cyan' : 'text-fg'
+                  `px-4 py-2.5 rounded-md transition-colors ${
+                    isActive ? 'text-primary bg-primary/10 font-semibold' : 'text-muted-foreground hover:text-foreground'
+                  }`
                 }
               >
-                &gt; {l.label}
+                {l.label}
               </NavLink>
             ))}
           </nav>

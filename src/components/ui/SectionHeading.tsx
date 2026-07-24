@@ -1,13 +1,17 @@
-export default function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
+export default function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description?: string }) {
   return (
-    <div className="mb-10">
-      <div className="font-mono text-xs tracking-widest text-cyan-neon mb-2">
-        &gt; {eyebrow}
-      </div>
-      <h2 className="font-display text-3xl md:text-5xl text-fg" style={{ textShadow: '0 0 20px rgba(0, 240, 255, 0.2)' }}>
+    <div className="mb-8">
+      <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-1">
+        {eyebrow}
+      </span>
+      <h2 className="font-sans text-2xl sm:text-4xl font-bold tracking-tight text-foreground">
         {title}
       </h2>
-      <div className="mt-3 h-px bg-gradient-to-r from-cyan-neon via-magenta-neon to-transparent w-48" />
+      {description && (
+        <p className="mt-2 text-muted-foreground text-base max-w-xl">
+          {description}
+        </p>
+      )}
     </div>
   )
 }
