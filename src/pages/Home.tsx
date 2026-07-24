@@ -10,6 +10,7 @@ import CircularGallery from '@/components/reactbits/CircularGallery'
 import DitherBackground from '@/components/reactbits/DitherBackground'
 import LogoLoop from '@/components/reactbits/LogoLoop'
 import CurvedLoop from '@/components/reactbits/CurvedLoop'
+import SpecularButton from '@/components/reactbits/SpecularButton'
 import { PROJECTS } from '@/data/projects'
 import { Github, Mail, ArrowRight, User, Briefcase, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -70,18 +71,18 @@ export default function Home() {
             I build interactive 3D simulations, optimized algorithm engines, and data visualization tools. Focused on clarity, efficiency, and thoughtful design.
           </p>
 
-          <div className="flex flex-wrap gap-3 items-center">
-            <Button size="lg" asChild className="gap-2">
-              <Link to="/projects">
-                View Selected Work <ArrowRight className="w-4 h-4" />
-              </Link>
-            </Button>
+          <div className="flex flex-wrap gap-4 items-center">
+            <Link to="/projects">
+              <SpecularButton size="lg" lineColor="#00f0ff" baseColor="#1e293b">
+                View Selected Work <ArrowRight className="w-4 h-4 ml-2" />
+              </SpecularButton>
+            </Link>
 
-            <Button size="lg" variant="outline" asChild className="gap-2">
-              <Link to="/about">
-                <User className="w-4 h-4" /> More About Me
-              </Link>
-            </Button>
+            <Link to="/about">
+              <SpecularButton size="lg" lineColor="#ec4899" baseColor="#1e293b" tintOpacity={0.1}>
+                <User className="w-4 h-4 mr-2" /> More About Me
+              </SpecularButton>
+            </Link>
           </div>
         </div>
 
@@ -240,17 +241,17 @@ export default function Home() {
           <p className="text-muted-foreground text-base max-w-md mx-auto mb-8">
             Whether you'd like to collaborate on a project or simply connect, my inbox is always open.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button size="lg" asChild className="gap-2">
-              <a href="mailto:maddox.krape@gmail.com">
-                <Mail className="w-4 h-4" /> maddox.krape@gmail.com
-              </a>
-            </Button>
-            <Button size="lg" variant="outline" asChild className="gap-2">
-              <a href="https://github.com/maddoxk" target="_blank" rel="noreferrer">
-                <Github className="w-4 h-4" /> GitHub
-              </a>
-            </Button>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="mailto:maddox.krape@gmail.com">
+              <SpecularButton size="lg" lineColor="#00f0ff" baseColor="#1e293b">
+                <Mail className="w-4 h-4 mr-2" /> maddox.krape@gmail.com
+              </SpecularButton>
+            </a>
+            <a href="https://github.com/maddoxk" target="_blank" rel="noreferrer">
+              <SpecularButton size="lg" lineColor="#a855f7" baseColor="#1e293b">
+                <Github className="w-4 h-4 mr-2" /> GitHub Profile
+              </SpecularButton>
+            </a>
           </div>
         </Card>
       </section>

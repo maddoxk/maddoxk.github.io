@@ -1,6 +1,7 @@
 import SectionHeading from '@/components/ui/SectionHeading'
 import ExperienceSection from '@/components/ui/ExperienceSection'
 import ASCIIText from '@/components/reactbits/ASCIIText'
+import SpecularButton from '@/components/reactbits/SpecularButton'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
@@ -99,11 +100,11 @@ export default function About() {
             Currently focused on refining interactive web engineering, building rich UI design systems with Shadcn & Tailwind CSS, 
             and exploring high-performance web solutions.
           </p>
-          <Button asChild size="lg" className="gap-2">
-            <Link to="/projects">
-              Browse Projects <ArrowRight className="w-4 h-4" />
-            </Link>
-          </Button>
+          <Link to="/projects">
+            <SpecularButton size="lg" lineColor="#00f0ff" baseColor="#1e293b">
+              Browse Projects <ArrowRight className="w-4 h-4 ml-2" />
+            </SpecularButton>
+          </Link>
         </Card>
       </section>
     </div>
