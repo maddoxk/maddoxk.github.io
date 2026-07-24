@@ -1,13 +1,15 @@
-import { Card, CardContent } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Users, ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { CardContent } from '@/components/ui/card'
+import SpotlightCard from '@/components/reactbits/SpotlightCard'
+import { Users } from 'lucide-react'
 
 export default function ExperienceSection() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {/* Western Union Intern */}
-      <Card className="bg-card/40 border-border/50 backdrop-blur-md hover:border-primary/40 transition-colors">
+      <SpotlightCard
+        spotlightColor="rgba(234, 179, 8, 0.2)"
+        className="bg-card/40 border-border/50 backdrop-blur-md hover:border-yellow-400/50 hover:shadow-lg hover:shadow-yellow-400/5 transition-all duration-300"
+      >
         <CardContent className="p-6 flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center justify-between gap-3 mb-4">
@@ -23,10 +25,13 @@ export default function ExperienceSection() {
             </p>
           </div>
         </CardContent>
-      </Card>
+      </SpotlightCard>
 
       {/* DU CS Major */}
-      <Card className="bg-card/40 border-border/50 backdrop-blur-md hover:border-primary/40 transition-colors">
+      <SpotlightCard
+        spotlightColor="rgba(244, 63, 94, 0.2)"
+        className="bg-card/40 border-border/50 backdrop-blur-md hover:border-rose-500/50 hover:shadow-lg hover:shadow-rose-500/5 transition-all duration-300"
+      >
         <CardContent className="p-6 flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center justify-between gap-3 mb-4">
@@ -42,10 +47,13 @@ export default function ExperienceSection() {
             </p>
           </div>
         </CardContent>
-      </Card>
+      </SpotlightCard>
 
       {/* DU AI Club Treasurer */}
-      <Card className="bg-card/40 border-border/50 backdrop-blur-md hover:border-primary/40 transition-colors">
+      <SpotlightCard
+        spotlightColor="rgba(56, 189, 248, 0.2)"
+        className="bg-card/40 border-border/50 backdrop-blur-md hover:border-sky-400/50 hover:shadow-lg hover:shadow-sky-400/5 transition-all duration-300"
+      >
         <CardContent className="p-6 flex flex-col justify-between h-full">
           <div>
             <div className="flex items-center justify-between gap-3 mb-4">
@@ -61,7 +69,7 @@ export default function ExperienceSection() {
             </p>
           </div>
         </CardContent>
-      </Card>
+      </SpotlightCard>
     </div>
   )
 }
