@@ -1,42 +1,34 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const LINES = [
-  '> ESTABLISHING SECURE CONNECTION...',
-  '> IDENTITY: MADDOX_KRAPE',
-  '> LOADING PORTFOLIO.sys',
-  '> [################] 100%',
-  '> READY',
-]
-
 export default function BootSequence() {
-  const seen = typeof window !== 'undefined' && sessionStorage.getItem('portfolio:booted') === '1'
+  const seen = typeof window !== 'undefined' && sessionStorage.getItem('portfolio:loaded') === '1'
   const [visible, setVisible] = useState(!seen)
-  const [shown, setShown] = useState(0)
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     if (!visible) return
-    const timers: number[] = []
-    LINES.forEach((_, i) => {
-      timers.push(window.setTimeout(() => setShown(i + 1), i * 280))
-    })
-    timers.push(
-      window.setTimeout(() => {
-        sessionStorage.setItem('portfolio:booted', '1')
-        setVisible(false)
-      }, LINES.length * 280 + 400),
-    )
-    return () => timers.forEach(clearTimeout)
-  }, [visible])
 
-  useEffect(() => {
-    if (!visible) return
-    const skip = () => setVisible(false)
-    window.addEventListener('click', skip)
-    window.addEventListener('keydown', skip)
+    // Smooth progress counter from 0 to 100%
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval)
+          return 100
+        }
+        const next = prev + Math.floor(Math.random() * 18) + 8
+        return next > 100 ? 100 : next
+      })
+    }, 90)
+
+    const timer = setTimeout(() => {
+      sessionStorage.setItem('portfolio:loaded', '1')
+      setVisible(false)
+    }, 1400)
+
     return () => {
-      window.removeEventListener('click', skip)
-      window.removeEventListener('keydown', skip)
+      clearInterval(interval)
+      clearTimeout(timer)
     }
   }, [visible])
 
@@ -46,17 +38,47 @@ export default function BootSequence() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-[1000] flex items-center justify-center bg-[var(--bg-void)]"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed inset-0 z-[1000] flex flex-col items-center justify-center bg-background select-none px-6"
         >
-          <div className="font-mono text-cyan-neon text-lg md:text-xl max-w-2xl px-8 w-full">
-            {LINES.slice(0, shown).map((l, i) => (
-              <div key={i} className="mb-2" style={{ textShadow: 'var(--glow-cyan-sm)' }}>
-                {l}
-              </div>
-            ))}
-            <div className="inline-block w-3 h-5 bg-cyan-neon animate-pulse" />
-          </div>
+          {/* Subtle Ambient Glow */}
+          <div className="absolute w-72 h-72 rounded-full bg-primary/10 blur-3xl pointer-events-none" />
+
+          {/* Minimalist Monogram Logo & Progress Indicator */}
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4 }}
+            className="relative z-10 flex flex-col items-center max-w-xs w-full"
+          >
+            {/* Monogram Box */}
+            <div className="w-14 h-14 rounded-2xl border border-border/80 bg-card/80 backdrop-blur-xl flex items-center justify-center mb-6 shadow-xl shadow-primary/5 ring-1 ring-primary/20">
+              <span className="font-mono font-bold text-xl tracking-tighter text-foreground">
+                MK<span className="text-primary">.</span>
+              </span>
+            </div>
+
+            {/* Title */}
+            <div className="font-sans font-semibold text-sm tracking-wide text-foreground mb-1">
+              MADDOX KRAPE
+            </div>
+            <div className="font-mono text-[11px] text-muted-foreground uppercase tracking-widest mb-6">
+              SYSTEM INITIALIZING
+            </div>
+
+            {/* Minimal Progress Bar */}
+            <div className="w-full h-1 bg-secondary/80 rounded-full overflow-hidden mb-3 border border-border/40">
+              <div
+                className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-150 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+
+            {/* Percentage Indicator */}
+            <div className="font-mono text-[10px] text-muted-foreground tracking-widest">
+              {progress}%
+            </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
