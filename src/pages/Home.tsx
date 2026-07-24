@@ -174,12 +174,12 @@ export default function Home() {
             scrollSpeed={2}
             scrollEase={0.05}
             items={[
-              { image: '/images/fullstack_ai_rag_chat.jpg', text: 'React & Vite UI' },
-              { image: '/images/search_algorithms.jpg', text: 'Autonomous AI Agents' },
-              { image: '/images/fullstack_ai_rag_chat.jpg', text: 'Transformers.js RAG' },
-              { image: '/images/backend_job_queue.jpg', text: 'Go Ledgers & APIs' },
-              { image: '/images/backend_job_queue.jpg', text: 'Rust Tokio Worker Queue' },
-              { image: '/images/search_algorithms.jpg', text: 'Python ML Backtester' },
+              { image: '/images/fullstack-ai-rag-chat.jpg', text: 'React & Vite UI' },
+              { image: '/images/search.jpg', text: 'Autonomous AI Agents' },
+              { image: '/images/fullstack-ai-rag-chat.jpg', text: 'Transformers.js RAG' },
+              { image: '/images/fintech-payments-ledger.jpg', text: 'Go Ledgers & APIs' },
+              { image: '/images/backend-job-queue.jpg', text: 'Rust Tokio Worker Queue' },
+              { image: '/images/python-ml.jpg', text: 'Python ML Backtester' },
             ]}
           />
         </div>
