@@ -4,6 +4,8 @@ import ExperienceSection from '@/components/ui/ExperienceSection'
 import BlurText from '@/components/reactbits/BlurText'
 import ShinyText from '@/components/reactbits/ShinyText'
 import SpotlightCard from '@/components/reactbits/SpotlightCard'
+import Particles from '@/components/reactbits/Particles'
+import TrueFocus from '@/components/reactbits/TrueFocus'
 import { PROJECTS } from '@/data/projects'
 import { SKILLS } from '@/data/skills'
 import { Github, Mail, ArrowRight, Code2, User, Briefcase, ChevronDown } from 'lucide-react'
@@ -23,8 +25,10 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="min-h-[85vh] flex flex-col justify-between px-6 max-w-5xl mx-auto pt-16 pb-8 relative">
-        <div className="my-auto">
+      <section className="min-h-[85vh] flex flex-col justify-between px-6 max-w-5xl mx-auto pt-16 pb-8 relative overflow-hidden">
+        <Particles particleCount={35} speed={0.4} />
+
+        <div className="my-auto relative z-10">
           <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-4 block">
             <ShinyText text="Software Engineer & Problem Solver" speed={4} />
           </span>
@@ -53,7 +57,7 @@ export default function Home() {
         </div>
 
         {/* Animated Floating Scroll Down Arrow */}
-        <div className="flex justify-center pt-8">
+        <div className="flex justify-center pt-8 relative z-10">
           <button
             onClick={scrollToContent}
             aria-label="Scroll to content"
@@ -66,7 +70,14 @@ export default function Home() {
 
       {/* About Preview */}
       <section id="background-section" className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
-        <SectionHeading eyebrow="Background" title="Engineering with Intention" />
+        <div className="mb-8">
+          <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-2">
+            Background
+          </span>
+          <h2 className="text-3xl font-bold text-foreground">
+            <TrueFocus sentence="Engineering with Intention" blurAmount={3} />
+          </h2>
+        </div>
         <SpotlightCard className="overflow-hidden">
           <CardContent className="p-8 md:p-10 grid md:grid-cols-[auto_1fr] gap-8 items-center">
             <img
