@@ -20,7 +20,7 @@ export default function About() {
     <div className="px-6 max-w-5xl mx-auto py-16 pt-20">
       {/* ASCIIText Interactive Display */}
       <div className="h-44 sm:h-56 relative w-full mb-8 rounded-2xl border border-border/40 bg-card/30 backdrop-blur-md overflow-hidden flex items-center justify-center">
-        <ASCIIText text="Maddox" asciiFontSize={8} textFontSize={180} enableWaves={true} />
+        <ASCIIText text="Maddox" asciiFontSize={10} textFontSize={180} enableWaves={true} />
       </div>
 
       <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-3">
