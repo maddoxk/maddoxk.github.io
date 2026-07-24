@@ -1,5 +1,6 @@
 import SectionHeading from '@/components/ui/SectionHeading'
 import ExperienceSection from '@/components/ui/ExperienceSection'
+import ASCIIText from '@/components/reactbits/ASCIIText'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
@@ -17,6 +18,11 @@ const TIMELINE = [
 export default function About() {
   return (
     <div className="px-6 max-w-5xl mx-auto py-16 pt-20">
+      {/* ASCIIText Interactive Display */}
+      <div className="h-44 sm:h-56 relative w-full mb-8 rounded-2xl border border-border/40 bg-card/30 backdrop-blur-md overflow-hidden flex items-center justify-center">
+        <ASCIIText text="Maddox" asciiFontSize={8} textFontSize={180} enableWaves={true} />
+      </div>
+
       <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider block mb-3">
         Developer Profile
       </span>
