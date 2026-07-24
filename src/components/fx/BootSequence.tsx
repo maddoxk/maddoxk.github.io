@@ -59,11 +59,8 @@ export default function BootSequence() {
             </div>
 
             {/* Title */}
-            <div className="font-sans font-semibold text-sm tracking-wide text-foreground mb-1">
+            <div className="font-sans font-semibold text-sm tracking-wide text-foreground mb-6">
               MADDOX KRAPE
-            </div>
-            <div className="font-mono text-[11px] text-muted-foreground uppercase tracking-widest mb-6">
-              SYSTEM INITIALIZING
             </div>
 
             {/* Minimal Progress Bar */}
