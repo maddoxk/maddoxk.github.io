@@ -11,13 +11,13 @@ export interface CircularGalleryCardItem {
 
 interface CircularGalleryProps {
   items: CircularGalleryCardItem[]
-  autoRotateSpeed?: number // ms interval between steps, default 3000ms
+  autoRotateSpeed?: number // ms interval between steps, default 3500ms
   className?: string
 }
 
 export default function CircularGallery({
   items,
-  autoRotateSpeed = 3000,
+  autoRotateSpeed = 3500,
   className = '',
 }: CircularGalleryProps) {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -50,7 +50,7 @@ export default function CircularGallery({
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* 3D Circular Ring Container with Perspective */}
-      <div className="relative w-full h-[460px] flex items-center justify-center overflow-visible [perspective:1200px] [transform-style:preserve-3d]">
+      <div className="relative w-full h-[460px] flex items-center justify-center overflow-visible [perspective:1400px] [transform-style:preserve-3d]">
         {items.map((item, index) => {
           const total = items.length
           let offset = index - activeIndex
@@ -60,16 +60,17 @@ export default function CircularGallery({
           const isCenter = offset === 0
           const absOffset = Math.abs(offset)
 
-          // Smooth 3D circular arc mathematics
-          const angle = (offset / total) * Math.PI * 1.4 // Spread arc angle
-          const radius = 340 // Ring radius in pixels
+          // Increased ring radius & angular spacing to prevent text overlap
+          const angle = (offset / total) * Math.PI * 1.8 // Wider arc spread
+          const radius = 480 // Expanded 3D ring radius
 
           const translateX = Math.sin(angle) * radius
           const translateZ = Math.cos(angle) * radius - radius // Depth recession
-          const rotateY = (angle * 180) / Math.PI // Curve rotation along ring arc
+          const rotateY = (angle * 180) / Math.PI
 
-          const scale = isCenter ? 1.05 : Math.max(0.72, 1 - absOffset * 0.12)
-          const opacity = isCenter ? 1 : Math.max(0.25, 0.85 - absOffset * 0.25)
+          const scale = isCenter ? 1.05 : Math.max(0.68, 1 - absOffset * 0.16)
+          const opacity = isCenter ? 1 : Math.max(0.15, 0.7 - absOffset * 0.25)
+          const zIndex = 30 - Math.round(absOffset * 10) // Strict depth layering
 
           return (
             <div
@@ -77,12 +78,13 @@ export default function CircularGallery({
               onClick={() => setActiveIndex(index)}
               className={`absolute top-1/2 left-1/2 w-80 sm:w-96 rounded-2xl border p-7 backdrop-blur-2xl transition-all duration-700 ease-out cursor-pointer shadow-2xl ${
                 isCenter
-                  ? 'border-primary/60 bg-card/95 shadow-primary/10 z-30 ring-1 ring-primary/30'
-                  : 'border-border/40 bg-card/50 z-10 hover:border-border/80'
+                  ? 'border-primary/60 bg-card/95 shadow-primary/10 ring-1 ring-primary/30'
+                  : 'border-border/40 bg-card/60 hover:border-border/80'
               }`}
               style={{
                 transform: `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
                 opacity,
+                zIndex,
               }}
             >
               {/* Header: Official Logo + Category */}
