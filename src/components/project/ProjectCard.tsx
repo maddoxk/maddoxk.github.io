@@ -2,14 +2,15 @@ import { Link } from 'react-router-dom'
 import Tilt from 'react-parallax-tilt'
 import type { Project } from '@/data/projects'
 import { ArrowUpRight } from 'lucide-react'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
+import { CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import SpotlightCard from '@/components/reactbits/SpotlightCard'
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Tilt tiltMaxAngleX={6} tiltMaxAngleY={6} glareEnable glareMaxOpacity={0.08} scale={1.02} transitionSpeed={1200}>
       <Link to={project.href} className="group block h-full">
-        <Card className="h-full border-border/50 bg-card/60 backdrop-blur-md hover:border-primary/50 transition-all duration-300 overflow-hidden flex flex-col justify-between hover:shadow-lg hover:shadow-primary/5">
+        <SpotlightCard className="h-full border-border/50 bg-card/60 backdrop-blur-md hover:border-primary/50 transition-all duration-300 overflow-hidden flex flex-col justify-between hover:shadow-lg hover:shadow-primary/5">
           <div>
             <div className="relative aspect-video overflow-hidden bg-muted/30">
               {project.thumb ? (
@@ -52,7 +53,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               ))}
             </div>
           </CardFooter>
-        </Card>
+        </SpotlightCard>
       </Link>
     </Tilt>
   )

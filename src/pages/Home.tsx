@@ -1,6 +1,9 @@
 import SectionHeading from '@/components/ui/SectionHeading'
 import ProjectCard from '@/components/project/ProjectCard'
 import ExperienceSection from '@/components/ui/ExperienceSection'
+import BlurText from '@/components/reactbits/BlurText'
+import ShinyText from '@/components/reactbits/ShinyText'
+import SpotlightCard from '@/components/reactbits/SpotlightCard'
 import { PROJECTS } from '@/data/projects'
 import { SKILLS } from '@/data/skills'
 import { Github, Mail, ArrowRight, Code2, User, Briefcase, ChevronDown } from 'lucide-react'
@@ -23,11 +26,11 @@ export default function Home() {
       <section className="min-h-[85vh] flex flex-col justify-between px-6 max-w-5xl mx-auto pt-16 pb-8 relative">
         <div className="my-auto">
           <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-4 block">
-            Software Engineer & Problem Solver
+            <ShinyText text="Software Engineer & Problem Solver" speed={4} />
           </span>
 
           <h1 className="font-sans font-bold text-4xl sm:text-6xl md:text-7xl tracking-tight text-foreground mb-6 leading-[1.08]">
-            Hi, I'm Maddox Krape.
+            <BlurText text="Hi, I'm Maddox Krape." delay={120} animateBy="words" direction="top" />
           </h1>
 
           <p className="max-w-2xl text-muted-foreground text-lg sm:text-xl leading-relaxed mb-10 font-sans">
@@ -64,7 +67,7 @@ export default function Home() {
       {/* About Preview */}
       <section id="background-section" className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
         <SectionHeading eyebrow="Background" title="Engineering with Intention" />
-        <Card className="bg-card/40 border-border/50 backdrop-blur-md overflow-hidden">
+        <SpotlightCard className="overflow-hidden">
           <CardContent className="p-8 md:p-10 grid md:grid-cols-[auto_1fr] gap-8 items-center">
             <img
               src="/images/profile.jpeg"
@@ -86,7 +89,7 @@ export default function Home() {
               </Button>
             </div>
           </CardContent>
-        </Card>
+        </SpotlightCard>
       </section>
 
       {/* Experience & Education */}
