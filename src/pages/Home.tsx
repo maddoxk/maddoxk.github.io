@@ -8,13 +8,29 @@ import Particles from '@/components/reactbits/Particles'
 import TrueFocus from '@/components/reactbits/TrueFocus'
 import CircularGallery from '@/components/reactbits/CircularGallery'
 import DitherBackground from '@/components/reactbits/DitherBackground'
+import LogoLoop from '@/components/reactbits/LogoLoop'
 import { PROJECTS } from '@/data/projects'
-import { SKILLS } from '@/data/skills'
-import { Github, Mail, ArrowRight, Code2, User, Briefcase, ChevronDown } from 'lucide-react'
+import { Github, Mail, ArrowRight, User, Briefcase, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Link } from 'react-router-dom'
+
+const TECH_LOGOS = [
+  { name: 'TypeScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
+  { name: 'JavaScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+  { name: 'React', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+  { name: 'Python', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+  { name: 'Go', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg' },
+  { name: 'Rust', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg' },
+  { name: 'C++', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'Java', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
+  { name: 'Node.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+  { name: 'Three.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg' },
+  { name: 'Docker', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+  { name: 'PostgreSQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
+  { name: 'Git', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+  { name: 'Linux', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+]
 
 export default function Home() {
   const scrollToContent = () => {
@@ -159,17 +175,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tech Stack */}
-      <section className="px-6 max-w-5xl mx-auto py-20 border-t border-border/40">
+      {/* Tech Stack Logo Loop */}
+      <section className="px-6 max-w-5xl mx-auto py-16 border-t border-border/40">
         <SectionHeading eyebrow="Toolkit" title="Technologies & Skills" />
-        <div className="flex flex-wrap gap-2">
-          {SKILLS.map(s => (
-            <Badge key={s.name} variant="secondary" className="px-3 py-1 text-xs font-mono font-normal border border-border/50">
-              <Code2 className="w-3 h-3 mr-1.5 text-muted-foreground" />
-              {s.name}
-            </Badge>
-          ))}
-        </div>
+        <LogoLoop logos={TECH_LOGOS} direction="left" hoverPause={true} />
       </section>
 
       {/* Contact Section */}
